@@ -1,0 +1,70 @@
+10
+
+dir
+454
+http://projects.globant.com/svn/cisco-skywalker/main/dev/js/fwk/widgets
+http://projects.globant.com/svn/cisco-skywalker
+
+
+
+2012-10-12T17:56:01.640758Z
+451
+mauro.buselli
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bca903f7-6e34-446b-9200-ce1174915c57
+
+grid
+dir
+
+tabs
+dir
+
+navigator
+dir
+
+rules
+dir
+
+popover
+dir
+
+dummy
+dir
+
+properties
+dir
+
+modal
+dir
+
+footer
+dir
+
+toolbar
+dir
+
+popup
+dir
+
+menu
+dir
+
+breadcrumb
+dir
+
+diagramtoolbox
+dir
+

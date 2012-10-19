@@ -1,0 +1,74 @@
+{
+  "rows" : [
+    {
+      "base" : "<img src=images/checkbox.png>",
+      "name" : "Initialize",
+      "description" : "Perform dependancy checks",
+      "automation pack" : "WebDB",
+      "owner" : "wcampbell/UX"
+    },
+    {
+      "base" : "",
+      "name" : "Clean Up",
+      "description" : "",
+      "automation pack" : "WebDB",
+      "owner" : "wcampbell/UX"
+    },
+    {
+      "base" : "",
+      "name" : "Configure",
+      "description" : "",
+      "automation pack" : "WebDB",
+      "owner" : "wcampbell/UX"
+    },
+    {
+      "base" : "<img src=images/checkbox.png>",
+      "name" : "Create",
+      "description" : "Provision the Server",
+      "automation pack" : "WebDB",
+      "owner" : "wcampbell/UX"
+    },
+    {
+      "base" : "<img src=images/checkbox.png>",
+      "name" : "Delete",
+      "description" : "De-provision this instance",
+      "automation pack" : "WebDB",
+      "owner" : "wcampbell/UX"
+    },
+    {
+      "base" : "<img src=images/checkbox.png>",
+      "name" : "Start",
+      "description" : "Power on the Server",
+      "automation pack" : "WebDB",
+      "owner" : "wcampbell/UX"
+    },
+    {
+      "base" : "<img src=images/checkbox.png>",
+      "name" : "Stop",
+      "description" : "Power off the Server",
+      "automation pack" : "WebDB",
+      "owner" : "wcampbell/UX"
+    },
+    {
+      "base" : "",
+      "name" : "Pause",
+      "description" : "",
+      "automation pack" : "WebDB",
+      "owner" : "wcampbell/UX"
+    },
+    {
+      "base" : "",
+      "name" : "Reboot",
+      "description" : "",
+      "automation pack" : "WebDB",
+      "owner" : "wcampbell/UX"
+    },
+    {
+      "base" : "",
+      "name" : "Shut Down Gracefully",
+      "description" : "",
+      "automation pack" : "WebDB",
+      "owner" : "wcampbell/UX"
+    }
+  ]
+}

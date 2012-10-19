@@ -1,0 +1,16 @@
+<div id="{{id}}" class="toolbar toolbar-style ui-helper-gradient-inverter toolbar-shadow-effect">
+  <ul class="toolbar-options-group">
+    {{#optionGroup}}
+    <li class="toolbar-options-group-li">
+      <ul class="toolbar-options">
+      {{#options}}
+        <li id="{{optionId}}" class="toolbar-option">
+          <span class="{{icon}} ui-icon toolbar-icon"></span>
+          <span class="toolbar-option-name">{{optionname}}</span>
+        </li>
+      {{/options}}
+      </ul>
+    </li>
+    {{/optionGroup}}
+  </ul>
+</div>

@@ -1,0 +1,178 @@
+/*
+ * Style of Modules contents
+ */
+
+.view-container {
+	width: 97%;
+	font-family: Arial;
+	font-size: 12px;
+	color: #848484;
+	margin-left: 10px;
+	padding-top: 8px;
+	padding-bottom: 10px;
+	}
+
+/*
+ * Buttons Style
+ */
+
+	.view-container button {
+		padding: 9px;
+		background-color: white;
+		color: #8C8C8C;
+		border: 1px solid #C9C9C9;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+		-moz-box-shadow: 0 3px 5px rgba(50, 50, 50, 0.5);
+		-webkit-box-shadow: 0 3px 5px rgba(50, 50, 50, 0.5);
+		box-shadow: 0 1px 0 rgba(50, 50, 50, 0.2);
+		cursor: pointer;
+	}
+	.view-container button[disabled],
+	.view-container button:disabled {
+		color: #E0E0E0;
+		border: 1px solid #EEECEC;
+		-moz-box-shadow: 0 3px 5px rgba(184, 184, 184, 0.2);
+		-webkit-box-shadow: 0 3px 5px rgba(184, 184, 184, 0.2);
+		box-shadow: 0 1px 0 rgba(184, 184, 184, 0.2);
+	}
+	.view-container .browse-button {
+		padding: 0 5px 2px 5px;
+		margin: 0 0 0 10px;
+	}
+
+	.view-container select {
+		height: 25px;
+	}
+
+	.view-container input[disabled],
+	.view-container input:disabled {
+		background-color: #f9f9f9;
+	}
+
+	.view-container .display-name-select {
+		position: absolute;
+		right: 0;
+		left: 170px;
+		bottom: 13px;
+	}
+
+.view-container .section-container {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.section-container .section-title-wrapper {
+	clear: both;
+	width: 100%;
+	height: 20px;
+	position: relative;
+	}
+	.section-container .section-title {
+		position: absolute;
+		z-index: 5;
+		padding-right: 20px;
+		left: 0;
+	  font-size: 13px;
+	  font-weight: bold;
+	  color: #333333;
+	  text-align: left;
+	  background: white;
+	}
+	.line-on-right {
+		position: absolute;
+		width: 90%;
+		z-index: 1;
+		right: 0;
+		top: 8px;
+		border-top: 1px solid #D9D9D9;
+}
+
+.section-container .section-content-wrapper {
+	position: relative;
+  width: 100%;
+  margin-top: 8px;
+  padding-bottom: 15px;
+  }
+ 	.section-container .section-content-wrapper input,
+	.section-container .section-content-wrapper span,
+	.section-container .section-content-wrapper textarea,
+	.section-container .section-content-wrapper div {
+		 -moz-box-sizing: border-box;
+	   -webkit-box-sizing: border-box;
+			box-sizing: border-box;
+	   -webkit-border-radius: 2px;
+		 -moz-border-radius: 2px;
+			border-radius: 2px;
+	}
+	.section-container .section-content-wrapper textarea {
+		font-family: Arial;
+		font-size: 12px;
+		color: #848484;
+	}
+
+.no-border-content {
+		margin-left: 10px;
+}
+
+.section-content-input {
+	border: 1px solid #D9D9D9;
+	padding: 10px;
+	width: 100%;
+}
+.section-content-textarea {
+	border: 1px solid #D9D9D9;
+	padding: 10px;
+	width: 100%;
+	min-height: 145px;
+	resize: none;
+}
+
+/*
+ *  Solutionbrowser Processes Options view
+ *   Policyeditor General view
+ */
+.input-pair-object {
+	display: inline-block;
+	}
+	.input-pair-object input {
+		display: inline-block;
+		margin-bottom: 10px;
+		}
+		.input-pair-object input[type="checkbox"] {
+			margin-left: 0;
+		}
+		.input-pair-object input[type="radio"] {
+			margin-left: 30px;
+		}
+		.input-pair-object span {
+			display: inline-block;
+			margin-left: 5px;
+		}
+
+.line-alone {
+	width: 100%;
+}
+
+/*
+ *  Shadow effects
+ */
+
+.blue-shadow {
+  -moz-box-shadow: 0 0 2px 2px #a3c5d7;
+  -webkit-box-shadow: 0 0 2px 2px#a3c5d7;
+  box-shadow: 0 0 2px 2px #a3c5d7;
+}
+
+.yellow-shadow {
+	-moz-box-shadow: 0 0 2px 2px #dec893;
+  -webkit-box-shadow: 0 0 2px 2px#dec893;
+  box-shadow: 0 0 2px 2px #dec893;
+}
+
+.gray-bottom-small-shadow {
+	-webkit-box-shadow: 0px 1px 1px rgba(170, 170, 170, 0.75);
+	-moz-box-shadow:    0px 1px 1px rgba(170, 170, 170, 0.75);
+	box-shadow:         0px 1px 1px rgba(170, 170, 170, 0.75);
+}

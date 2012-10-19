@@ -1,0 +1,22 @@
+.ui-autocomplete-input {
+
+}
+
+.ui-menu {
+  margin-top: 1px;
+  font-size: 0.7em;
+  list-style-type: none;
+  border: 1px solid #EBE8E8;
+  display: inline-block;
+
+}
+
+.ui-menu-item {
+  cursor: pointer;
+  padding: 2px 2px 2px 2px;
+  color: #999999;
+}
+
+.ui-menu-item:hover {
+  background-color: #D8F1F1;
+}

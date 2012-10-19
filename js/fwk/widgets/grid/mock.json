@@ -1,0 +1,19 @@
+{
+  "rows" : [
+    {
+      "name" : "Web Server Name",
+      "type" : "String",
+      "value" : "WebName"
+    },
+    {
+      "name" : "IP Address",
+      "type" : "Relationship",
+      "value" : "127.0.0.1"
+    },
+    {
+      "name" : "Database",
+      "type" : "Relationship",
+      "value" : "DBName"
+    }
+  ]
+}

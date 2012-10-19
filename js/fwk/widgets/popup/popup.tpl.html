@@ -1,0 +1,19 @@
+<div
+  id="{{id}}"
+  class="popup-container ui-widget ui-helper-shadow ui-helper-hidden ui-widget-border">
+  <div class="header-popup ui-helper-border ui-helper-gradient">
+    {{caption}}
+  </div>
+  <ul class="popup-option-list">
+    {{#items}}
+      <li>
+        <a href="" data-ppitem-order="{{itemId}}">
+          {{#if icon}}
+          <span  class="sprite-{{icon}}-ico ui-icon left popup-icon" data-ppitem-order="{{itemId}}"></span>
+          {{/if}}
+          {{name}}
+        </a>
+      </li>
+    {{/items}}
+  </ul>
+</div>

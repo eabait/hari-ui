@@ -1,0 +1,134 @@
+/*  Less Framework 4
+  http://lessframework.com
+  by Joni Korpi
+  License: http://opensource.org/licenses/mit-license.php */
+
+
+/*  Resets
+------  */
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em,
+img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, hr,
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figure, figcaption, hgroup,
+menu, footer, header, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+article, aside, canvas, figure, figure img, figcaption, hgroup,
+footer, header, nav, section, audio, video {
+  display: block;
+}
+
+a img {border: 0;}
+
+/*
+ * Global styles:
+ */
+
+ html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url(../images/body-background.png);
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:        border-box;
+}
+
+header {
+  position: relative;
+  width: 100%;
+  min-width: 1280px;
+  min-height: 70px;
+  height: auto !important;
+  /*height: 10%;*/
+  margin: 0 auto;
+
+  background: #354f88; /* for non-css3 browsers */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#354f88', endColorstr='#317aae',GradientType=0 ); /* IE6-9 */
+  background-image: linear-gradient(right , rgb(53,79,136) 20%, rgb(49,122,174) 60%, rgb(53,79,136) 100%);
+  background-image: -o-linear-gradient(right , rgb(53,79,136) 20%, rgb(49,122,174) 60%, rgb(53,79,136) 100%);
+  background-image: -moz-linear-gradient(right , rgb(53,79,136) 20%, rgb(49,122,174) 60%, rgb(53,79,136) 100%);
+  background-image: -webkit-linear-gradient(right , rgb(53,79,136) 20%, rgb(49,122,174) 60%, rgb(53,79,136) 100%);
+  background-image: -ms-linear-gradient(right , rgb(53,79,136) 20%, rgb(49,122,174) 60%, rgb(53,79,136) 100%);
+  background-image: -webkit-gradient(linear, right top, left top, color-stop(0.2, rgb(53,79,136)), color-stop(0.6, rgb(49,122,174)), color-stop(1, rgb(53,79,136)));
+  border-bottom: 1px solid black;
+}
+
+.main-container {
+  position: relative;
+  width: 1230px;
+  min-height: 79%;
+  /*height: auto !important;*/
+  height: 79%;
+  margin: 0 auto -38px;
+}
+
+/*
+ * The next rules will be applied when the user enters into
+ * fullscreen mode
+ */
+
+.main-container:fullscreen {
+  width: 100%;
+  height: 100%;
+  padding-top: 1.7%;
+  padding-left:1.7%;
+  background-color: white;
+}
+
+.main-container:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  padding-top: 1.7%;
+  padding-left:1.7%;
+  background-color: white;
+}
+
+.main-container:-moz-full-screen {
+  width: 100%;
+  height: 100%;
+  padding-top: 1.7%;
+  padding-left:1.7%;
+  background-color: white;
+}
+
+footer, .push {
+  height: 38px;
+}
+
+footer {
+  position: relative;
+  margin: 0 auto;
+  top: 38px;
+  clear: both;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 1px solid #2f8bbe;
+}
+
+.white-button {
+  padding: 9px;
+  background-color: white;
+  color: #8C8C8C;
+  border: 1px solid #C9C9C9;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0 3px 5px rgba(50, 50, 50, 0.5);
+  -webkit-box-shadow: 0 3px 5px rgba(50, 50, 50, 0.5);
+  box-shadow: 0 1px 0 rgba(50, 50, 50, 0.2);
+  cursor: pointer;
+}

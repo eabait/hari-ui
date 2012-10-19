@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/cisco-skywalker/!svn/ver/450/main/dev/js/app/modules/mainwindow
+END
+mainwindow.view.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/cisco-skywalker/!svn/ver/450/main/dev/js/app/modules/mainwindow/mainwindow.view.js
+END
+mainwindow.router.js
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/cisco-skywalker/!svn/ver/374/main/dev/js/app/modules/mainwindow/mainwindow.router.js
+END
+mainwindow.tpl.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/cisco-skywalker/!svn/ver/305/main/dev/js/app/modules/mainwindow/mainwindow.tpl.html
+END

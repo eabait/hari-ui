@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <span class="modal-header-title">{{modalTitle}}</span>
+  {{#if closeBtn}}
+  <a class="close" data-dismiss="modal">x</a>
+  {{/if}}
+</div>
+<div class="modal-body">
+  {{contentView}}
+</div>
+<div class="modal-footer">
+  {{#buttons}}
+  <a id="{{idBtn}}" data-dismiss="modal" {{#if urlBtn}}href="{{urlBtn}}"{{/if}}
+  class="btn modal-button modal-{{action}}-btn">{{nameBtn}}</a>
+  {{/buttons}}
+</div>

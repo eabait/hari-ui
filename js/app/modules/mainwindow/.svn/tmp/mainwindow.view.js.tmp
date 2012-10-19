@@ -1,0 +1,135 @@
+define(
+  [
+    'container.view',
+    'text!./mainwindow.tpl.html',
+    'fwk/widgets/menu/menu.view',
+    'fwk/widgets/footer/footer.view',
+    'fwk/widgets/breadcrumb/breadcrumb.view',
+    'fwk/widgets/notifications/notifications.view'
+  ],
+  function(ContainerView, mainLayoutTpl, MenuView, FooterView, BreadcrumbView, NotificationsView) {
+    'use strict';
+
+    var MainWindow = ContainerView.extend({
+      el: $('body'),
+
+      name: 'MainWindow',
+
+      template: mainLayoutTpl,
+
+      setUp : function() {
+        //add super-menu widget
+        var mainMenuItems = [
+          {
+            id : 'designstudio',
+            name : 'Design Studio'
+          },
+          {
+            id : 'solutionbrowser',
+            name : 'Solution Browser'
+          },
+          {
+            id : 'operations',
+            name : 'Operations'
+          },
+          {
+            id : 'systemadministration',
+            name : 'System Administration'
+          }
+        ];
+        this.addView('header', new MenuView({
+          items: mainMenuItems
+        }));
+
+        //Add breadcrumb widget
+        this.addView('.breadcrumb-container', new BreadcrumbView());
+
+        //Add footer widget
+        var alertsView = new NotificationsView({
+          data : {
+            notifications : [
+              {
+                title : 'Lipsum Lorem Dolor',
+                message : 'Lorem Ipsum has been the industry´s standard dummy.',
+                time : '06/10/12 15:04:14',
+                moreInfo : 1
+              },
+              {
+                title : 'Lorem Ipsum',
+                message : 'Lorem Ipsum has been the industry´s standard dummy text ever since 1500s.',
+                time : '06/10/12 15:04:14',
+                moreInfo : 0
+              }
+            ]
+          }
+        });
+
+        var incidentsView = new NotificationsView({
+          data : {
+            notifications : [
+              {
+                title : 'Lipsum Lorem Dolor',
+                message : 'Lorem Ipsum has been the industry´s standard dummy.',
+                time : '06/10/12 15:04:14',
+                moreInfo : 1
+              },
+              {
+                title : 'Lorem Ipsum',
+                message : 'Lorem Ipsum has been the industry´s standard dummy text ever since 1500s.',
+                time : '06/10/12 15:04:14',
+                moreInfo : 0
+              },
+              {
+                title : 'Lorem Ipsum',
+                message : 'Lorem Ipsum has been the industry´s standard dummy text ever since 1500s.',
+                time : '06/10/12 15:04:14',
+                moreInfo : 0
+              }
+            ]
+<<<<<<< .mine
+          }
+=======
+          },
+          onshow: 'slide',
+          onhide: 'slide'
+>>>>>>> .r281
+        });
+
+        var tasksView = new NotificationsView({
+          data : {
+            notifications : [
+              {
+                title : 'Lipsum Lorem Dolor',
+                message : 'Lorem Ipsum has been the industry´s standard dummy.',
+                time : '06/10/12 15:04:14',
+                moreInfo : 1
+              },
+              {
+                title : 'Lorem Ipsum',
+                message : 'Lorem Ipsum has been the industry´s standard dummy text ever since 1500s.',
+                time : '06/10/12 15:04:14',
+                moreInfo : 0
+              },
+              {
+                title : 'Lorem Ipsum',
+                message : 'Lorem Ipsum has been the industry´s standard dummy text ever since 1500s.',
+                time : '06/10/12 15:04:14',
+                moreInfo : 0
+              }
+            ]
+<<<<<<< .mine
+          }
+=======
+          },
+          onshow: 'slide',
+          onhide: 'slide'
+>>>>>>> .r281
+        });
+
+        this.addView('footer', new FooterView({alertNotifications : alertsView, incidentNotifications : incidentsView, taskNotifications : tasksView}));
+      }
+    });
+
+    return new MainWindow();
+  }
+);
