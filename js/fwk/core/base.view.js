@@ -9,11 +9,12 @@ define(
   [
     'backbone',
     'underscore',
+    'handlebars',
     'jquery',
     'statemachine',
     'pubsub'
   ],
-  function(Backbone, _, $, StateMachine, PubSub) {
+  function(Backbone, _, Handlebars, $, StateMachine, PubSub) {
     'use strict';
 
     var BaseView = Backbone.View.extend({
@@ -21,17 +22,29 @@ define(
       //finite-state-machine
       fsm : null,
 
-      //reference to the template
+      //reference to the view's template
+      template: null,
+
+      //reference to the compiled template
       cachedTemplate : null,
 
       //animation hash
       animations : {},
 
+      //events to which this views has been subscribed
+      //in the PubSub object
       subscriptions : {},
 
       name: 'BaseView',
 
       constructor: function(){
+        //check template
+        if (!this.template) {
+          throw new Error('Hari UI: a template must be specified');
+        }
+        //compile template and save compiled function
+        this.cachedTemplate = Handlebars.compile(this.template);
+
         //Create State Machine
         this.fsm = StateMachine.create({
           initial: 'start',
@@ -87,10 +100,10 @@ define(
        */
       subscribe : function(event, callback) {
         if (!event) {
-          throw new Error('Skywalker UI Error: Provide an event topic to subscribe to - base.view.js');
+          throw new Error('Hari UI Error: Provide an event topic to subscribe to - base.view.js');
         }
         if (!callback || !_.isFunction(callback)) {
-          throw new Error('Skywalker UI Error: Provide a valid callback function for event: ' + event);
+          throw new Error('Hari UI Error: Provide a valid callback function for event: ' + event);
         }
 
         this.subscriptions[event] = PubSub.subscribe(event, callback);

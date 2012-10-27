@@ -13,10 +13,9 @@ define(
     'underscore',
     'jquery',
     'base.view',
-    'handlebars',
     'fwk/core/fxmanager'
   ],
-  function(Backbone, _, $, BaseView, Handlebars, FXManager) {
+  function(Backbone, _, $, BaseView, FXManager) {
     'use strict';
 
     var ContainerView = BaseView.extend({
@@ -25,12 +24,8 @@ define(
 
       initialize: function() {
         this.regions = {};
-        this.cachedTemplate = Handlebars.compile(this.template);
         this.data = {};
         this.setUp();
-        if (this.title) {
-          this.data.title = this.title;
-        }
       },
 
       /**
@@ -59,7 +54,8 @@ define(
             view.show();
           }
           else {
-            throw new Error('View ' + view.cid + ' is in a state that cannot be displayed: ' +
+            throw new Error('Hari UI: View ' + view.cid +
+              ' is in a state that cannot be displayed: ' +
               view.fsm.current);
           }
       },
@@ -122,7 +118,6 @@ define(
       },
 
       /**
-       * TODO: call clean up of each subview
        */
       cleanUp : function() {
         BaseView.prototype.cleanUp.apply(this);
