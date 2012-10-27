@@ -8,6 +8,7 @@ require.config({
   paths: {
     'base.view' : 'fwk/core/base.view',
     'container.view' : 'fwk/core/container.view',
+    'base.module' : 'fwk/core/base.module',
     'backbone' : 'vendor/backbone/backbone',
     'jquery' : 'vendor/jquery/jquery-1.8.0',
     'underscore' : 'vendor/underscore/underscore',
@@ -43,6 +44,6 @@ require(
   ],
   function(Aplication) {
     'use strict';
-    Aplication.init();
+    Aplication.start();
   }
 );

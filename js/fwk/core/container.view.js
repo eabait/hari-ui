@@ -65,14 +65,18 @@ define(
       doRender : function() {
         this.$el.html(this.cachedTemplate(this.data));
         for (var view in this.regions) {
-            this.showView(view);
+          this.showView(view);
         }
       },
 
       /**
        * Replaces a view's region with a new view
        * and applies a transition to the later
-       * @param  {object} options configuration object
+       * @param  {object} options configuration object. Has the following
+       *                          attributes:
+       *                          - region {string}
+       *                          - newView {object}
+       *                          - transition {string}
        * @return {object} return this
        */
       subViewTransition : function(options) {

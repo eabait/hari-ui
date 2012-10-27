@@ -1,4 +1,8 @@
-hari-ui
-=======
+Hari UI Widgets
+===============
 
-Hari UI is an application framework for building RIA in Javascript and HTML5
+List of widgets:
+ + Tab
+ + Grid
+ + Twitter search
+ + Popover
