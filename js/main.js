@@ -15,20 +15,8 @@ require.config({
     'statemachine' : 'vendor/statemachine/state-machine',
     'modernizr' : 'vendor/modernizr/modernizr-wrapper',
     'text' : 'vendor/require/plugins/text',
-    'jqGrid' : 'vendor/jquery/plugins/jquery.jqGrid.src',
     'pubsub' : 'vendor/pubsub/pubsub',
-    'jquery.ui' : 'vendor/jquery/plugins/jquery-ui-1.8.23.custom',
-    'jqAnimate' : 'vendor/jquery/plugins/jquery.animate-enhanced',
-    'jsplumb' : 'vendor/jsplumb/jquery.jsPlumb-1.3.12-all',
-    'bootstrap' : 'vendor/jquery/plugins/bootstrap',
-    'd3' : 'vendor/d3/d3.v2',
-
-    // raphael libraries needed:
-    'eve' : 'vendor/raphael/eve',
-    'raphael' : 'vendor/raphael/raphael.amd',
-    'raphaelcore' : 'vendor/raphael/raphael.core',
-    'raphaelsvg' : 'vendor/raphael/raphael.svg',
-    'raphaelvml' : 'vendor/raphael/raphael.vml'
+    'bootstrap' : 'vendor/jquery/plugins/bootstrap'
   },
   //load script's dependencies in correct order &
   //wraps non-AMD scripts into AMD-modules
@@ -45,40 +33,16 @@ require.config({
     },
     'handlebars': {
       exports : 'Handlebars'
-    },
-    'jqGrid' : {
-      deps : ['jquery'],
-      exports : '$.jgrid'
-    },
-    'jquery.ui' : {
-      deps : ['jquery']
-    },
-    'uiAutocomplete' : {
-      deps : ['jquery', 'jquery.ui']
-    },
-    'raphael' : {
-      deps : ['jquery'],
-      exports : 'raphael'
-    },
-    'jqAnimate' : {
-      deps : ['jquery']
-    },
-    'jsplumb' : {
-      deps : ['jquery', 'jquery.ui'],
-      exports: 'jsPlumb'
-    },
-    'd3' : {
-      exports : 'd3'
     }
   }
 });
 
 require(
   [
-    'app/bootstrap'
+    'app/Application'
   ],
-  function(bootstrap) {
+  function(Aplication) {
     'use strict';
-    bootstrap.init();
+    Aplication.init();
   }
 );
