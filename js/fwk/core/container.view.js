@@ -99,25 +99,6 @@ define(
       },
 
       /**
-       * @Override by Views that can be disabled
-       */
-      toogle : function() {
-        //NO-OP
-      },
-
-      /**
-       * Shows 'container' in fullscreen mode
-       */
-      toFullScreen: function(container) {
-        var el = $(container).get(0);
-        if(el.webkitRequestFullScreen) {
-          el.webkitRequestFullScreen();
-        } else {
-          el.mozRequestFullScreen();
-        }
-      },
-
-      /**
        */
       cleanUp : function() {
         BaseView.prototype.cleanUp.apply(this);

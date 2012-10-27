@@ -39,7 +39,7 @@ require.config({
 
 require(
   [
-    'app/Application'
+    'app/application.module'
   ],
   function(Aplication) {
     'use strict';

@@ -5,21 +5,12 @@
  */
 define(
   [
-    'app/modules/mainwindow/mainwindow.router'
+    './modules/example/example.view'
   ],
-  function(MainRouter) {
-
+  function(ExampleView) {
     'use strict';
 
-    window.onerror = function(errorMsg, url, lineNumber) {
-      console.log(errorMsg + ' in ' + url + ' at line ' + lineNumber);
-      console.trace();
-    };
-
-    return {
-      init : function() {
-        MainRouter.init();
-      }
-    };
+    var example = new ExampleView();
+    example.render();
   }
 );

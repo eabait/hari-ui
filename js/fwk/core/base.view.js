@@ -38,13 +38,6 @@ define(
       name: 'BaseView',
 
       constructor: function(){
-        //check template
-        if (!this.template) {
-          throw new Error('Hari UI: a template must be specified');
-        }
-        //compile template and save compiled function
-        this.cachedTemplate = Handlebars.compile(this.template);
-
         //Create State Machine
         this.fsm = StateMachine.create({
           initial: 'start',
@@ -81,7 +74,13 @@ define(
         this.animations['hide']['slide'] = $.fn.slideUp;
 
         BaseView.__super__.constructor.apply(this, arguments);
-        //this._configure(options || {});
+
+        //check template
+        if (!this.template) {
+          throw new Error('Hari UI: a template must be specified');
+        }
+        //compile template and save compiled function
+        this.cachedTemplate = Handlebars.compile(this.template);
       },
 
       defaultAction : function() {
