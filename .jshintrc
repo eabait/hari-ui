@@ -113,7 +113,10 @@
     "predef"        : [         // Extra globals.
         "define",
         "require",
-        "alert"
+        "alert",
+        "describe",
+        "it",
+        "expect"
     ],
     "indent"        : 2         // Specify indentation spacing
 }
