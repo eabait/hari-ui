@@ -20,7 +20,7 @@ define(
      */
     var ViewManager = ContainerView.extend({
 
-      setUp : function() {
+      doInit : function() {
         this.template = AppTpl;
       }
 

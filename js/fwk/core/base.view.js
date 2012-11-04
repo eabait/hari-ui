@@ -37,10 +37,12 @@ define(
 
       name: 'BaseView',
 
-      constructor: function(){
+      constructor: function() {
+        BaseView.__super__.constructor.apply(this, arguments);
+
         //Create State Machine
         this.fsm = StateMachine.create({
-          initial: 'start',
+          initial: 'none',
           cid: _.uniqueId('fsm'),
           events: [
             {name: 'init',    from: 'none',                   to: 'start'},
@@ -55,6 +57,7 @@ define(
             {name: 'enable',  from: 'disable',                to: 'enabled'}
           ],
           callbacks : {
+            'oninit'    : _.bind(this.doInit, this),
             'onload'    : _.bind(this.doLoad, this),
             'onrender'  : _.bind(this.doRender, this),
             'onshow'    : _.bind(this.showAnimation, this),
@@ -73,14 +76,7 @@ define(
         this.animations['hide']['fade'] = $.fn.fadeOut;
         this.animations['hide']['slide'] = $.fn.slideUp;
 
-        BaseView.__super__.constructor.apply(this, arguments);
-
-        //check template
-        if (!this.template) {
-          throw new Error('Hari UI: a template must be specified');
-        }
-        //compile template and save compiled function
-        this.cachedTemplate = Handlebars.compile(this.template);
+        this.init();
       },
 
       defaultAction : function() {
@@ -129,6 +125,13 @@ define(
        */
       is : function(state) {
         return this.fsm.is(state);
+      },
+
+      /**
+       * @Override by Views to initilize
+       * the object. Called during construction
+       */
+      doInit : function() {
       },
 
       /**
@@ -183,6 +186,16 @@ define(
       /**
        * Transition methods-----------------
        */
+      init : function() {
+        this.fsm.init();
+        //check template
+        if (!this.template) {
+          throw new Error('Hari UI: a template must be specified');
+        }
+        //compile template and save compiled function
+        this.cachedTemplate = Handlebars.compile(this.template);
+      },
+
       render : function() {
         //console.log(this.name + ' ' + 'rendering');
         if (this.preRender && _.isFunction(this.preRender)) {
@@ -235,7 +248,7 @@ define(
        *    + el, $el, options, model, fsm, cachedTemplate
        *    + animations
        */
-      cleanUp : function() {
+      disposal : function() {
         //Remove created elements inside $el
         this.$el.empty();
 

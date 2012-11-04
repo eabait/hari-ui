@@ -10,7 +10,7 @@ define(
 
       el: 'body',
 
-      initialize : function() {
+      doInit : function() {
         this.template = tpl;
       },
 

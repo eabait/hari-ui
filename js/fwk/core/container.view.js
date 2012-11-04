@@ -22,18 +22,10 @@ define(
 
       name: 'ContainerView',
 
-      initialize: function() {
+      constructor: function() {
+        ContainerView.__super__.constructor.apply(this, arguments);
         this.regions = {};
         this.data = {};
-        this.setUp();
-      },
-
-      /**
-       * To be overriden by subclasses.
-       * Provides a place for instanciating
-       * subviews.
-       */
-      setUp : function() {
       },
 
       addView : function(region, view) {
@@ -104,10 +96,10 @@ define(
 
       /**
        */
-      cleanUp : function() {
-        BaseView.prototype.cleanUp.apply(this);
+      disposal : function() {
+        BaseView.prototype.disposal.apply(this);
         for (var view in this.regions) {
-          this.regions[view].cleanUp();
+          this.regions[view].disposal();
         }
       }
     });
