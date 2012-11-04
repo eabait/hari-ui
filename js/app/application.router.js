@@ -22,9 +22,10 @@ define([
       },
 
       loadExampleModule : function() {
+        var view = new ExampleView();
         this.viewManager.subViewTransition({
           region: '.main-content',
-          newView: new ExampleView(),
+          newView: view,
           transition: 'bounce'
         });
       },

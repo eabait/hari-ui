@@ -42,29 +42,36 @@ define(
 
         //Create State Machine
         this.fsm = StateMachine.create({
-          initial: 'none',
+          //initial: 'start',
           cid: _.uniqueId('fsm'),
           events: [
-            {name: 'init',    from: 'none',                   to: 'start'},
+            {name: 'init',    from: 'none',                    to: 'start'},
             {name: 'render',  from: ['start', 'loading',
-                                     'displayed'],            to: 'displayed'},
-            {name: 'load',    from: ['start', 'displayed'],   to: 'loading'},
-            {name: 'hide',    from: ['displayed', 'loading'], to: 'invisible'},
-            {name: 'show',    from: 'invisible',              to: 'displayed'},
-            {name: 'show',    from: 'loading',                to: 'loading'},
+                                     'displayed'],             to: 'displayed'},
+            {name: 'renderInvisible',
+                              from: ['start', 'loading'],      to: 'invisible'},
+            {name: 'load',    from: ['start', 'displayed'],    to: 'loading'},
+            {name: 'hide',    from: ['displayed'],             to: 'invisible'},
+            {name: 'show',    from: 'invisible',               to: 'displayed'},
             {name: 'disable', from: ['loading', 'displayed',
-                                     'invisible'],            to: 'disabled'},
-            {name: 'enable',  from: 'disable',                to: 'enabled'}
+                                     'invisible'],             to: 'disabled'},
+            {name: 'enable',  from: 'disabled',                to: 'enabled'},
+            {name: 'dispose', from: ['start', 'loading',
+                                     'displayed', 'invisible',
+                                     'disabled'],              to: 'disposed'}
           ],
           callbacks : {
-            'oninit'    : _.bind(this.doInit, this),
-            'onload'    : _.bind(this.doLoad, this),
-            'onrender'  : _.bind(this.doRender, this),
-            'onshow'    : _.bind(this.showAnimation, this),
-            'onhide'    : _.bind(this.hideAnimation, this),
-            'ondisable' : _.bind(this.toggle, this),
-            'onenable'  : _.bind(this.toggle, this)
-          }
+            'oninit'            : _.bind(this.doInit, this),
+            'onload'            : _.bind(this.doLoad, this),
+            'onrender'          : _.bind(this.doRender, this),
+            'onrenderInvisible' : _.bind(this.doRenderInvisible, this),
+            'onshow'            : _.bind(this.showAnimation, this),
+            'onhide'            : _.bind(this.hideAnimation, this),
+            'ondisable'         : _.bind(this.toggle, this),
+            'onenable'          : _.bind(this.toggle, this),
+            'ondispose'         : _.bind(this.disposal, this)
+          },
+          error: this.transitionErrorHandler
         });
 
         //load animation map
@@ -128,6 +135,21 @@ define(
       },
 
       /**
+       * Default Error handler function for the State Machine
+       * @param  {string} eventName    transition that caused the error
+       * @param  {string} from         from state
+       * @param  {string} to           to state
+       * @param  {string} args         arguments
+       * @param  {string} errorCode    error code
+       * @param  {string} errorMessage error message
+       * @return {Error}               returns an Error object
+       */
+      transitionErrorHandler : function(eventName, from, to, args, errorCode, errorMessage) {
+        throw new Error('Hari UI Error: ' + eventName + ' caused an error going from ' +
+          from + ' to ' + to + '. Message ' + errorMessage + ' with args ' + args);
+      },
+
+      /**
        * @Override by Views to initilize
        * the object. Called during construction
        */
@@ -147,6 +169,14 @@ define(
        * @Override by all Views
        */
       doRender : function() {
+        //NO-OP
+      },
+
+      /**
+       * @Override by Views that renders itself
+       * as invisible
+       */
+      doRenderInvisible : function() {
         //NO-OP
       },
 
@@ -208,6 +238,11 @@ define(
         //console.log(this.name + ' ' + 'end rendering');
       },
 
+      renderInvisible : function() {
+        this.$el.css('display', 'none');
+        this.fsm.renderInvisible();
+      },
+
       load : function() {
         //console.log(this.name + ' ' + 'loading');
         this.fsm.load();
@@ -236,6 +271,10 @@ define(
 
       enable : function() {
         this.fsm.enable();
+      },
+
+      dispose : function() {
+        this.fsm.dispose();
       },
       //End of transition methods-------------
 

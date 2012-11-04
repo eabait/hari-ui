@@ -51,16 +51,25 @@ define(
      * Test disposal of a view
      */
     describe('disposal', function() {
-      it('cannot be used after disposal', function() {
+      var RenderView = BaseView.extend({
+        template: testTpl
+      });
+      var view = new RenderView();
 
+      it('cannot be used after disposal', function() {
+        view.dispose();
+        expect(function() {
+          view.render();
+        }).toThrow(new Error('Hari UI Error: render caused an error going from disposed to disposed.' +
+          ' Message event render inappropriate in current state disposed with args '));
       });
 
       it('cannot be subscribed to events after disposal', function() {
-
+        expect(true).toBe(false);
       });
 
       it('must clean up DOM after disposal', function() {
-
+        expect(true).toBe(false);
       });
     });
 
