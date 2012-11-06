@@ -116,7 +116,10 @@
         "alert",
         "describe",
         "it",
-        "expect"
+        "expect",
+        "beforeEach",
+        "afterEach",
+        "spyOn"
     ],
     "indent"        : 2         // Specify indentation spacing
 }

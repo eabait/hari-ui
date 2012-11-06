@@ -5,10 +5,11 @@
  */
 define(
   [
-    '../../fwk/core/base.view',
+    'base.view',
+    'pubsub',
     'text!./testView.tpl.html'
   ],
-  function(BaseView, testTpl) {
+  function(BaseView, PubSub, testTpl) {
     'use strict';
 
     /**
@@ -52,20 +53,33 @@ define(
      */
     describe('disposal', function() {
       var RenderView = BaseView.extend({
-        template: testTpl
+        template: testTpl,
+        listenEvent : function() {
+        }
       });
-      var view = new RenderView();
+      var view;
+
+      beforeEach(function() {
+        view = new RenderView();
+      });
 
       it('cannot be used after disposal', function() {
         view.dispose();
         expect(function() {
           view.render();
         }).toThrow(new Error('Hari UI Error: render caused an error going from disposed to disposed.' +
-          ' Message event render inappropriate in current state disposed with args '));
+          ' Message event render inappropriate in current state disposed with args ')
+        );
       });
 
       it('cannot be subscribed to events after disposal', function() {
-        expect(true).toBe(false);
+        spyOn(view, 'listenEvent');
+
+        view.subscribe('testEvent', view.listenEvent);
+        view.dispose();
+        PubSub.publish('testEvent');
+
+        expect(view.listenEvent).not.toHaveBeenCalled();
       });
 
       it('must clean up DOM after disposal', function() {
