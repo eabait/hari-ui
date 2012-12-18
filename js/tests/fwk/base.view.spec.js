@@ -16,7 +16,7 @@ define(
      * Test creation of a view
      */
     describe('intialization', function() {
-      it('throws an exception if no template specified', function() {
+      it('throws an exception if no template is specified', function() {
         //Extend BaseView without specifing a template
         var NoTemplateView = BaseView.extend({
         });
@@ -83,7 +83,7 @@ define(
       });
 
       it('must clean up DOM after disposal', function() {
-        expect(true).toBe(false);
+        expect(view.$el).toBeEmpty();
       });
     });
 

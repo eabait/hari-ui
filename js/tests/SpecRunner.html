@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../vendor/jasmine/jasmine.css"/>
     <script type="text/javascript" src="../vendor/jasmine/jasmine.js"></script>
     <script type="text/javascript" src="../vendor/jasmine/jasmine-html.js"></script>
+    <script type="text/javascript" src="../vendor/jasmine/jasmine-jquery-1.3.1.js"></script>
 
     <!-- RequireJS -->
     <script type="text/javascript" src="../vendor/require/require.js"></script>
@@ -24,6 +25,7 @@
           'base.view' : '../fwk/core/base.view',
           'container.view' : '../fwk/core/container.view',
           'base.module' : '../fwk/core/base.module',
+          'cache' : '../fwk/services/cache',
           'backbone' : '../vendor/backbone/backbone',
           'jquery' : '../vendor/jquery/jquery-1.8.0',
           'underscore' : '../vendor/underscore/underscore',
@@ -32,7 +34,7 @@
           'modernizr' : '../vendor/modernizr/modernizr-wrapper',
           'text' : '../vendor/require/plugins/text',
           'pubsub' : '../vendor/pubsub/pubsub',
-          'bootstrap' : '../vendor/jquery/plugins/bootstrap'
+          'lawnchair' : '../vendor/lawnchair/lawnchair-0.6.1'
         },
         //load script's dependencies in correct order &
         //wraps non-AMD scripts into AMD-modules
@@ -49,6 +51,9 @@
           },
           'handlebars': {
             exports : 'Handlebars'
+          },
+          'lawnchair' : {
+            exports: 'Lawnchair'
           }
         },
         baseUrl: './'
@@ -56,7 +61,8 @@
 
       require(
         [
-          'fwk/base.view.spec'
+          'fwk/base.view.spec',
+          'fwk/services/cache.spec'
         ],
         function() {
           jasmine.getEnv().addReporter(new jasmine.HtmlReporter());

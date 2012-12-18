@@ -17,7 +17,7 @@ require.config({
     'modernizr' : 'vendor/modernizr/modernizr-wrapper',
     'text' : 'vendor/require/plugins/text',
     'pubsub' : 'vendor/pubsub/pubsub',
-    'bootstrap' : 'vendor/jquery/plugins/bootstrap'
+    'lawnchair' : 'vendor/lawnchair/lawnchair-0.6.1'
   },
   //load script's dependencies in correct order &
   //wraps non-AMD scripts into AMD-modules
