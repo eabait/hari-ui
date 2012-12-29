@@ -15,7 +15,7 @@ define(
     /**
      * Test creation of a view
      */
-    describe('intialization', function() {
+    describe('BaseView intialization', function() {
       it('throws an exception if no template is specified', function() {
         //Extend BaseView without specifing a template
         var NoTemplateView = BaseView.extend({
@@ -36,7 +36,7 @@ define(
     /**
      * Test all transitions between states
      */
-    describe('states', function() {
+    describe('BaseView states', function() {
 
       it('initial state should be start', function() {
         var RenderView = BaseView.extend({
@@ -51,7 +51,7 @@ define(
     /**
      * Test disposal of a view
      */
-    describe('disposal', function() {
+    describe('BaseView disposal', function() {
       var RenderView = BaseView.extend({
         template: testTpl,
         listenEvent : function() {

@@ -119,7 +119,9 @@
         "expect",
         "beforeEach",
         "afterEach",
-        "spyOn"
+        "spyOn",
+        "runs",
+        "waitsFor"
     ],
     "indent"        : 2         // Specify indentation spacing
 }
