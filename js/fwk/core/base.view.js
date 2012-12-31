@@ -156,18 +156,20 @@ define(
       },
 
       /**
+       * Default behavior: renders the cached template
        * @Override by all Views
        */
       doRender : function() {
-        //NO-OP
+        this.$el.append(this.cachedTemplate());
       },
 
       /**
+       * Default behavior: renders the cached template
        * @Override by Views that renders itself
        * as invisible
        */
       doRenderInvisible : function() {
-        //NO-OP
+        this.$el.append(this.cachedTemplate());
       },
 
       /**

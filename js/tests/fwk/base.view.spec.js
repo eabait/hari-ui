@@ -15,7 +15,7 @@ define(
     /**
      * Test creation of a view
      */
-    describe('BaseView intialization', function() {
+    describe('BaseView initialization', function() {
       it('throws an exception if no template is specified', function() {
         //Extend BaseView without specifing a template
         var NoTemplateView = BaseView.extend({
@@ -36,16 +36,121 @@ define(
     /**
      * Test all transitions between states
      */
-    describe('BaseView states', function() {
+    describe('BaseView states and transitions', function() {
+      var RenderView = BaseView.extend({
+        template: testTpl
+      });
+      var view;
 
-      it('initial state should be start', function() {
-        var RenderView = BaseView.extend({
-          template: testTpl
-        });
-        var view = new RenderView();
+      beforeEach(function() {
+        view = new RenderView();
+      });
+
+      afterEach(function() {
+        view.dispose();
+      });
+
+      it('initial state should be <start>', function() {
         expect(view.fsm.current).toBe('start');
       });
 
+      it('state after -render- must be <displayed>', function() {
+        view.render();
+        expect(view.fsm.current).toBe('displayed');
+      });
+
+      it('state after -load- must be <loading>', function() {
+        view.load();
+        expect(view.fsm.current).toBe('loading');
+      });
+
+      it('state after -renderInvisible- must be <invisible>', function() {
+        view.renderInvisible();
+        expect(view.fsm.current).toBe('invisible');
+      });
+
+      it('state after -hide- must be <invisible>', function() {
+        view.render();
+        expect(view.fsm.current).toBe('displayed');
+        view.hide();
+        expect(view.fsm.current).toBe('invisible');
+      });
+
+      it('state after -show- must be <displayed>', function() {
+        view.render();
+        expect(view.fsm.current).toBe('displayed');
+        view.hide();
+        expect(view.fsm.current).toBe('invisible');
+        view.show();
+        expect(view.fsm.current).toBe('displayed');
+      });
+
+      it('state after -enable- must be <enabled>', function() {
+        // view.show();
+        // expect(view.fsm.current).toBe('displayed');
+      });
+
+      it('state after -disable- must be <disabled>', function() {
+        // view.show();
+        // expect(view.fsm.current).toBe('displayed');
+      });
+    });
+
+    describe('BaseView DOM manipulation according to transitions', function() {
+      var RenderView = BaseView.extend({
+        template: testTpl,
+        el: '#test'
+      });
+      var view;
+
+      beforeEach(function() {
+        view = new RenderView();
+      });
+
+      afterEach(function() {
+        view.dispose();
+      });
+
+      it('adds DOM elements when -render- is invoked', function() {
+        view.render();
+
+        //The DOM element exists
+        expect(view.$el.find('#testView')).toExist();
+        //and is contained inside the view DOM root element
+        expect(view.$el).toContain('#testView');
+      });
+
+      it('adds hidden DOM elements when -renderInvisible- is invoked', function() {
+        view.renderInvisible();
+        expect(view.$el.find('#testView')).toExist();
+        expect(view.$el).toBeHidden();
+      });
+
+      it('hides DOM elements when -hide- is invoked', function() {
+        var changed = false;
+        view.render();
+        expect(view.$el.find('#testView')).toExist();
+        runs(function() {
+          view.hide(function() {
+            changed = true;
+          });
+        });
+        waitsFor(function() {
+          return changed;
+        }, 'wait for animation to complete', 400);
+        runs(function() {
+          expect(view.$el).toBeHidden();
+        });
+      });
+
+      it('shows DOM elements when -show- is invoked', function() {
+        view.render();
+        expect(view.$el.find('#testView')).toExist();
+        view.hide();
+        expect(view.$el).toBeHidden();
+        view.show();
+        expect(view.$el).not.toBeHidden();
+      });
     });
 
     /**
