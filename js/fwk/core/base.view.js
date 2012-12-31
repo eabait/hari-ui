@@ -60,17 +60,6 @@ define(
                                      'displayed', 'invisible',
                                      'disabled'],              to: 'disposed'}
           ],
-          callbacks : {
-            'oninit'            : _.bind(this.doInit, this),
-            'onload'            : _.bind(this.doLoad, this),
-            'onrender'          : _.bind(this.doRender, this),
-            'onrenderInvisible' : _.bind(this.doRenderInvisible, this),
-            'onshow'            : _.bind(this.showAnimation, this),
-            'onhide'            : _.bind(this.hideAnimation, this),
-            'ondisable'         : _.bind(this.toggle, this),
-            'onenable'          : _.bind(this.toggle, this),
-            'ondispose'         : _.bind(this.disposal, this)
-          },
           error: this.transitionErrorHandler
         });
 
@@ -154,6 +143,7 @@ define(
        * the object. Called during construction
        */
       doInit : function() {
+        //NO-OP
       },
 
       /**
@@ -162,7 +152,7 @@ define(
        * model
        */
       doLoad : function() {
-        this.model.fetch();
+        //NO-OP
       },
 
       /**
@@ -217,34 +207,33 @@ define(
        * Transition methods-----------------
        */
       init : function() {
-        this.fsm.init();
+        this.doInit();
         //check template
         if (!this.template) {
           throw new Error('Hari UI: a template must be specified');
         }
         //compile template and save compiled function
         this.cachedTemplate = Handlebars.compile(this.template);
+
+        this.fsm.init();
       },
 
       render : function() {
-        //console.log(this.name + ' ' + 'rendering');
-        if (this.preRender && _.isFunction(this.preRender)) {
-          this.preRender();
-        }
+        console.log(this.name + ' ' + 'rendering');
+        this.doRender();
         this.fsm.render();
-        if (this.postRender && _.isFunction(this.postRender)) {
-          this.postRender();
-        }
         //console.log(this.name + ' ' + 'end rendering');
       },
 
       renderInvisible : function() {
         this.$el.css('display', 'none');
+        this.doRenderInvisible();
         this.fsm.renderInvisible();
       },
 
       load : function() {
         //console.log(this.name + ' ' + 'loading');
+        this.doLoad();
         this.fsm.load();
         //console.log(this.name + ' ' + 'end loading');
       },
@@ -254,6 +243,7 @@ define(
         if (cb && _.isFunction(cb)) {
           _.delay(cb, 300);
         }
+        this.showAnimation();
         this.fsm.show();
         //console.log(this.name + ' ' + ' end showing');
       },
@@ -262,18 +252,22 @@ define(
         if (cb && _.isFunction(cb)) {
           _.delay(cb, 300);
         }
+        this.hideAnimation();
         this.fsm.hide();
       },
 
       disable : function() {
+        this.doDisable();
         this.fsm.disable();
       },
 
       enable : function() {
+        this.doEnable();
         this.fsm.enable();
       },
 
       dispose : function() {
+        this.disposal();
         this.fsm.dispose();
       },
       //End of transition methods-------------

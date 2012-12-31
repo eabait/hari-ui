@@ -14,7 +14,32 @@ define(
      * Test creation of a cache object
      */
     describe('Cache initialization', function() {
-      //
+      var cache;
+
+      beforeEach(function() {
+        cache = new Cache({
+          adapter: 'dom',
+          name: 'test',
+          fillFactor: 0.5,
+          maxSize: 3
+        });
+      });
+
+      afterEach(function() {
+        cache.clear();
+      });
+
+      it('allows to add up to maxSize items', function() {
+        var item1 = { id : 'a' };
+        var item2 = { id : 'b' };
+        var item3 = { id : 'c' };
+
+        cache.setItem('a', item1);
+        cache.setItem('b', item2);
+        cache.setItem('c', item3);
+
+        expect(cache.size() === 3);
+      });
     });
 
     /**
@@ -60,6 +85,7 @@ define(
           cache.setItem('c', item3);
 
           cache.getItem('a');
+          cache.getItem('a');
           cache.setItem('d', item4);
         });
 
@@ -73,6 +99,9 @@ define(
           expect(cache.getItem('b')).toBeNull();
           expect(cache.getItem('c')).toBeNull();
           expect(cache.getItem('d')).toEqual(item4);
+
+          //test the new size which depends on fillFactor
+          expect(cache.size() === 2);
         });
       });
 
@@ -170,6 +199,39 @@ define(
 
     });
 
+    /**
+     * Test removing elements from the cache
+     */
+    describe('Cache resize', function() {
+      var cache;
+
+      beforeEach(function() {
+        cache = new Cache({
+          adapter: 'dom',
+          name: 'test',
+          fillFactor: 0.5,
+          maxSize: 3
+        });
+      });
+
+      afterEach(function() {
+        cache.clear();
+      });
+
+      it('adds 3 items, resize to 2', function() {
+        var item1 = { id : 'a' };
+        var item2 = { id : 'b' };
+        var item3 = { id : 'c' };
+
+        cache.setItem('a', item1);
+        cache.setItem('b', item2);
+        cache.setItem('c', item3);
+
+        cache.resize();
+
+        expect(cache.size() === 2);
+      });
+    });
   }
 );
 

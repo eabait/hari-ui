@@ -74,16 +74,16 @@ define(
       subViewTransition : function(options) {
         var region = options.region;
         var newView = options.newView;
-        var viewPostRender = newView.postRender;
+        var viewPostRender = newView.fsm.onafterrender;
 
-        //Wrap post-render with the transition animation
+        //Add after render handler with the transition animation
         if (viewPostRender && _.isFunction(viewPostRender)) {
-          newView.postRender = function() {
+          newView.fsm.onafterrender = function() {
             viewPostRender.apply(newView);
             FXManager.animate(region, options.transition);
           };
         } else {
-          newView.postRender = function() {
+          newView.fsm.onafterrender = function() {
             FXManager.animate(region, options.transition);
           };
         }
