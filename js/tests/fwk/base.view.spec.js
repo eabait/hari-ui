@@ -64,11 +64,6 @@ define(
         expect(view.fsm.current).toBe('loading');
       });
 
-      it('state after -renderInvisible- must be <invisible>', function() {
-        view.renderInvisible();
-        expect(view.fsm.current).toBe('invisible');
-      });
-
       it('state after -hide- must be <invisible>', function() {
         view.render();
         expect(view.fsm.current).toBe('displayed');
@@ -120,34 +115,21 @@ define(
         expect(view.$el).toContain('#testView');
       });
 
-      it('adds hidden DOM elements when -renderInvisible- is invoked', function() {
-        view.renderInvisible();
-        expect(view.$el.find('#testView')).toExist();
-        expect(view.$el).toBeHidden();
-      });
-
       it('hides DOM elements when -hide- is invoked', function() {
-        var changed = false;
         view.render();
         expect(view.$el.find('#testView')).toExist();
-        runs(function() {
-          view.hide(function() {
-            changed = true;
-          });
-        });
-        waitsFor(function() {
-          return changed;
-        }, 'wait for animation to complete', 400);
-        runs(function() {
-          expect(view.$el).toBeHidden();
-        });
+
+        view.hide();
+        expect(view.$el).toBeHidden();
       });
 
       it('shows DOM elements when -show- is invoked', function() {
         view.render();
         expect(view.$el.find('#testView')).toExist();
+
         view.hide();
         expect(view.$el).toBeHidden();
+
         view.show();
         expect(view.$el).not.toBeHidden();
       });

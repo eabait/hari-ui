@@ -48,8 +48,6 @@ define(
             {name: 'init',    from: 'none',                    to: 'start'},
             {name: 'render',  from: ['start', 'loading',
                                      'displayed'],             to: 'displayed'},
-            {name: 'renderInvisible',
-                              from: ['start', 'loading'],      to: 'invisible'},
             {name: 'load',    from: ['start', 'displayed'],    to: 'loading'},
             {name: 'hide',    from: ['displayed'],             to: 'invisible'},
             {name: 'show',    from: 'invisible',               to: 'displayed'},
@@ -164,15 +162,6 @@ define(
       },
 
       /**
-       * Default behavior: renders the cached template
-       * @Override by Views that renders itself
-       * as invisible
-       */
-      doRenderInvisible : function() {
-        this.$el.append(this.cachedTemplate());
-      },
-
-      /**
        * @Override by Views that can be disabled
        */
       toggle : function() {
@@ -184,11 +173,11 @@ define(
        * Applies the correct animation. Animation is
        * specified when creating the widget
        */
-      showAnimation : function() {
+      doShowElement : function() {
         if (this.options.onshow) {
           this.animations['show'][this.options.onshow].apply(this.$el);
         } else {
-          this.$el.toggle();
+          this.$el.css('display', 'block');
         }
       },
 
@@ -197,11 +186,11 @@ define(
        * Applies the correct animation. Animation is
        * specified when creating the widget
        */
-      hideAnimation : function() {
+      doHideElement : function() {
         if (this.options.onhide) {
           this.animations['hide'][this.options.onhide].apply(this.$el);
         } else {
-          this.$el.toggle();
+          this.$el.css('display', 'none');
         }
       },
 
@@ -227,12 +216,6 @@ define(
         //console.log(this.name + ' ' + 'end rendering');
       },
 
-      renderInvisible : function() {
-        this.$el.css('display', 'none');
-        this.doRenderInvisible();
-        this.fsm.renderInvisible();
-      },
-
       load : function() {
         //console.log(this.name + ' ' + 'loading');
         this.doLoad();
@@ -240,31 +223,25 @@ define(
         //console.log(this.name + ' ' + 'end loading');
       },
 
-      show : function(cb) {
+      show : function() {
         //console.log(this.name + ' ' + 'showing');
-        if (cb && _.isFunction(cb)) {
-          _.delay(cb, 300);
-        }
-        this.showAnimation();
+        this.doShowElement();
         this.fsm.show();
         //console.log(this.name + ' ' + ' end showing');
       },
 
-      hide : function(cb) {
-        if (cb && _.isFunction(cb)) {
-          _.delay(cb, 300);
-        }
-        this.hideAnimation();
+      hide : function() {
+        this.doHideElement();
         this.fsm.hide();
       },
 
       disable : function() {
-        this.doDisable();
+        this.toggle();
         this.fsm.disable();
       },
 
       enable : function() {
-        this.doEnable();
+        this.toggle();
         this.fsm.enable();
       },
 
