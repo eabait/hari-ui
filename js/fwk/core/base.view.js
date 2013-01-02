@@ -158,7 +158,11 @@ define(
        * @Override by all Views
        */
       doRender : function() {
-        this.$el.append(this.cachedTemplate());
+        var data = null;
+        if (this.model) {
+          data = this.model.toJSON();
+        }
+        this.$el[0].innerHTML = this.cachedTemplate(data);
       },
 
       /**

@@ -12,10 +12,6 @@ define(
 
       doInit : function() {
         this.template = tpl;
-      },
-
-      doRender : function() {
-        this.$el.append(this.cachedTemplate);
       }
 
     });
