@@ -99,7 +99,7 @@ define(
       disposal : function() {
         BaseView.prototype.disposal.apply(this);
         for (var view in this.regions) {
-          this.regions[view].disposal();
+          this.regions[view].dispose();
         }
       }
     });

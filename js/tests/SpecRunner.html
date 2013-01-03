@@ -22,19 +22,19 @@
        */
       require.config({
         paths: {
-          'base.view' : '../fwk/core/base.view',
-          'container.view' : '../fwk/core/container.view',
-          'base.module' : '../fwk/core/base.module',
-          'cache' : '../fwk/services/cache',
-          'backbone' : '../vendor/backbone/backbone',
-          'jquery' : '../vendor/jquery/jquery-1.8.0',
-          'underscore' : '../vendor/underscore/underscore',
-          'handlebars' : '../vendor/handlebars/handlebars-1.0.0.beta.6',
-          'statemachine' : '../vendor/statemachine/state-machine',
-          'modernizr' : '../vendor/modernizr/modernizr-wrapper',
-          'text' : '../vendor/require/plugins/text',
-          'pubsub' : '../vendor/pubsub/pubsub',
-          'lawnchair' : '../vendor/lawnchair/lawnchair-0.6.1'
+          'base.view' : 'fwk/core/base.view',
+          'container.view' : 'fwk/core/container.view',
+          'base.module' : 'fwk/core/base.module',
+          'cache' : 'fwk/services/cache',
+          'backbone' : 'vendor/backbone/backbone',
+          'jquery' : 'vendor/jquery/jquery-1.8.0',
+          'underscore' : 'vendor/underscore/underscore',
+          'handlebars' : 'vendor/handlebars/handlebars-1.0.0.beta.6',
+          'statemachine' : 'vendor/statemachine/state-machine',
+          'modernizr' : 'vendor/modernizr/modernizr-wrapper',
+          'text' : 'vendor/require/plugins/text',
+          'pubsub' : 'vendor/pubsub/pubsub',
+          'lawnchair' : 'vendor/lawnchair/lawnchair-0.6.1'
         },
         //load script's dependencies in correct order &
         //wraps non-AMD scripts into AMD-modules
@@ -56,13 +56,14 @@
             exports: 'Lawnchair'
           }
         },
-        baseUrl: './'
+        baseUrl: '../'
       });
 
       require(
         [
-          'fwk/base.view.spec',
-          'fwk/services/cache.spec'
+          'tests/fwk/base.view.spec',
+          'tests/fwk/container.view.spec',
+          'tests/fwk/services/cache.spec'
         ],
         function() {
           jasmine.getEnv().addReporter(new jasmine.HtmlReporter());

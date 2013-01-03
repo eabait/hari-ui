@@ -202,6 +202,8 @@ define(
        * Transition methods-----------------
        */
       init : function() {
+        this.fsm.init();
+
         this.doInit();
 
         //check template
@@ -214,49 +216,47 @@ define(
 
         //compile template and save compiled function
         this.cachedTemplate = Handlebars.compile(this.template);
-
-        this.fsm.init();
       },
 
       render : function() {
-        console.log(this.name + ' ' + 'rendering');
-        this.doRender();
+        // console.log(this.name + ' ' + 'rendering');
         this.fsm.render();
+        this.doRender();
         //console.log(this.name + ' ' + 'end rendering');
       },
 
       load : function() {
         //console.log(this.name + ' ' + 'loading');
-        this.doLoad();
         this.fsm.load();
+        this.doLoad();
         //console.log(this.name + ' ' + 'end loading');
       },
 
       show : function() {
         //console.log(this.name + ' ' + 'showing');
-        this.doShowElement();
         this.fsm.show();
+        this.doShowElement();
         //console.log(this.name + ' ' + ' end showing');
       },
 
       hide : function() {
-        this.doHideElement();
         this.fsm.hide();
+        this.doHideElement();
       },
 
       disable : function() {
-        this.toggle();
         this.fsm.disable();
+        this.toggle();
       },
 
       enable : function() {
-        this.toggle();
         this.fsm.enable();
+        this.toggle();
       },
 
       dispose : function() {
-        this.disposal();
         this.fsm.dispose();
+        this.disposal();
       },
       //End of transition methods-------------
 
@@ -275,8 +275,7 @@ define(
 
         var properties = [
           'el', '$el',
-          'options', 'model',
-          'fsm', 'cachedTemplate',
+          'options', 'model', 'cachedTemplate',
           'animations', 'name', 'subscriptions'
         ];
         var topic;
@@ -291,9 +290,9 @@ define(
           delete this.subscriptions[topic];
         }
 
-        for (var prop in properties) {
-          if (this.hasOwnProperty(prop)) {
-            delete this[prop];
+        for (var i = 0, l = properties.length; i < l; ++i) {
+          if (this.hasOwnProperty(properties[i])) {
+            delete this[properties[i]];
           }
         }
       }

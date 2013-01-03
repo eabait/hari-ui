@@ -92,14 +92,13 @@ define(
     });
 
     describe('BaseView DOM manipulation according to transitions', function() {
-      var RenderView = BaseView.extend({
-        template: testTpl,
-        el: '#test'
-      });
-      var view;
+      var view = null;
 
       beforeEach(function() {
-        view = new RenderView();
+        view = new BaseView({
+          template: testTpl,
+          el: '#test'
+        });
       });
 
       afterEach(function() {
