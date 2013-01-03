@@ -30,7 +30,7 @@ define(
 
       addView : function(region, view) {
         if (this.regions[region]) {
-          this.regions[region].cleanUp();
+          this.regions[region].dispose();
         }
         this.regions[region] = view;
       },
