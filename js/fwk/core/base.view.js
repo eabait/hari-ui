@@ -202,9 +202,10 @@ define(
        * Transition methods-----------------
        */
       init : function() {
+        if (this.fsm.can('init')) {
+          this.doInit();
+        }
         this.fsm.init();
-
-        this.doInit();
 
         //check template
         if (!this.template && !this.options.template) {
@@ -220,43 +221,57 @@ define(
 
       render : function() {
         // console.log(this.name + ' ' + 'rendering');
+        if (this.fsm.can('render')) {
+          this.doRender();
+        }
         this.fsm.render();
-        this.doRender();
         //console.log(this.name + ' ' + 'end rendering');
       },
 
       load : function() {
         //console.log(this.name + ' ' + 'loading');
+        if (this.fsm.can('load')) {
+          this.doLoad();
+        }
         this.fsm.load();
-        this.doLoad();
         //console.log(this.name + ' ' + 'end loading');
       },
 
       show : function() {
         //console.log(this.name + ' ' + 'showing');
+        if (this.fsm.can('show')) {
+          this.doShowElement();
+        }
         this.fsm.show();
-        this.doShowElement();
         //console.log(this.name + ' ' + ' end showing');
       },
 
       hide : function() {
+        if (this.fsm.can('hide')) {
+          this.doHideElement();
+        }
         this.fsm.hide();
-        this.doHideElement();
       },
 
       disable : function() {
+        if (this.fsm.can('disable')) {
+          this.toggle();
+        }
         this.fsm.disable();
-        this.toggle();
       },
 
       enable : function() {
+        if (this.fsm.can('enable')) {
+          this.toggle();
+        }
         this.fsm.enable();
-        this.toggle();
       },
 
       dispose : function() {
+        if (this.fsm.can('dispose')) {
+          this.disposal();
+        }
         this.fsm.dispose();
-        this.disposal();
       },
       //End of transition methods-------------
 

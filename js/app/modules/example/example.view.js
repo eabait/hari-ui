@@ -7,7 +7,6 @@ define(
     'use strict';
 
     var example = new BaseView({
-      el: 'body',
       template: tpl
     });
 
