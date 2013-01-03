@@ -54,9 +54,7 @@ define(
             {name: 'disable', from: ['loading', 'displayed',
                                      'invisible'],             to: 'disabled'},
             {name: 'enable',  from: 'disabled',                to: 'enabled'},
-            {name: 'dispose', from: ['start', 'loading',
-                                     'displayed', 'invisible',
-                                     'disabled'],              to: 'disposed'}
+            {name: 'dispose', from: '*',                       to: 'disposed'}
           ],
           error: this.transitionErrorHandler
         });
