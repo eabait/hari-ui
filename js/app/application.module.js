@@ -15,18 +15,6 @@ define(
     'use strict';
 
     /**
-     * Instance of ContainerView to be used as a ViewManager
-     * @type {ContainerView}
-     */
-    var ViewManager = ContainerView.extend({
-
-      doInit : function() {
-        this.template = AppTpl;
-      }
-
-    });
-
-    /**
      * Main application module
      * @type {BaseModule}
      */
@@ -41,8 +29,14 @@ define(
 
     });
 
-    var viewManager = new ViewManager({
-      el: 'body'
+    /**
+     * Instance of ContainerView that will act as
+     * container of application's views
+     * @type {ContainerView}
+     */
+    var viewManager = new ContainerView({
+      el: 'body',
+      template: AppTpl
     });
 
     return new Application({

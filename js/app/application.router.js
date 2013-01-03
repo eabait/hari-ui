@@ -7,7 +7,7 @@ define([
     './modules/example/example.view'
   ],
 
-  function(Backbone, ExampleView) {
+  function(Backbone, exampleView) {
     'use strict';
 
     var AppRouter = Backbone.Router.extend({
@@ -22,10 +22,9 @@ define([
       },
 
       loadExampleModule : function() {
-        var view = new ExampleView();
         this.viewManager.subViewTransition({
           region: '.main-content',
-          newView: view,
+          newView: exampleView,
           transition: 'bounce'
         });
       },

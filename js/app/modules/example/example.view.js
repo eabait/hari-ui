@@ -6,16 +6,11 @@ define(
   function(BaseView, tpl) {
     'use strict';
 
-    var ExampleView = BaseView.extend({
-
+    var example = new BaseView({
       el: 'body',
-
-      doInit : function() {
-        this.template = tpl;
-      }
-
+      template: tpl
     });
 
-    return ExampleView;
+    return example;
   }
 );

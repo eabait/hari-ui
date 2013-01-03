@@ -203,10 +203,15 @@ define(
        */
       init : function() {
         this.doInit();
+
         //check template
-        if (!this.template) {
+        if (!this.template && !this.options.template) {
           throw new Error('Hari UI: a template must be specified');
-        }
+        } else
+          if (this.options.template) {
+            this.template = this.options.template;
+          }
+
         //compile template and save compiled function
         this.cachedTemplate = Handlebars.compile(this.template);
 
