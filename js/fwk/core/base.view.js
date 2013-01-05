@@ -212,13 +212,6 @@ define(
       },
 
       /**
-       * @Override by Views that can be disabled
-       */
-      // toggle : function() {
-      //   //NO-OP
-      // },
-
-      /**
        * TODO: Use FXManager
        * Applies the correct animation. Animation is
        * specified when creating the widget
@@ -248,11 +241,6 @@ define(
        * Transition methods-----------------
        */
       init : function() {
-        // if (this.fsm.can('init')) {
-          //this.doInit();
-        // }
-        // this.fsm.init();
-        //
         this.fsm.init();
 
         //check template
@@ -268,52 +256,20 @@ define(
       },
 
       render : function() {
-        // console.log(this.name + ' ' + 'rendering');
-        // if (this.fsm.can('render')) {
         this.fsm.render();
-        // }
-        // this.fsm.render();
-        //console.log(this.name + ' ' + 'end rendering');
       },
 
       load : function() {
-        //console.log(this.name + ' ' + 'loading');
-        // if (this.fsm.can('load')) {
         this.fsm.load();
-        // }
-        // this.fsm.load();
-        //console.log(this.name + ' ' + 'end loading');
       },
 
       show : function() {
-        //console.log(this.name + ' ' + 'showing');
-        // if (this.fsm.can('show')) {
         this.fsm.show();
-        // }
-        // this.fsm.show();
-        //console.log(this.name + ' ' + ' end showing');
       },
 
       hide : function() {
-        // if (this.fsm.can('hide')) {
         this.fsm.hide();
-        // }
-        // this.fsm.hide();
       },
-
-      // disable : function() {
-      //   // if (this.fsm.can('disable')) {
-      //     this.toggle();
-      //   // }
-      //   // this.fsm.disable();
-      // },
-
-      // enable : function() {
-      //   if (this.fsm.can('enable')) {
-      //     this.toggle();
-      //   }
-      //   this.fsm.enable();
-      // },
 
       dispose : function() {
         // if (this.fsm.can('dispose')) {

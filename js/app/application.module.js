@@ -23,7 +23,7 @@ define(
       start : function() {
         this.viewManager.render();
         if (!Backbone.history.started) {
-          Backbone.history.start({pushState: true, root: 'hari-ui'});
+          Backbone.history.start({root: 'hari-ui'});
         }
       }
 

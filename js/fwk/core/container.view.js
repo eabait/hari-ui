@@ -9,13 +9,11 @@
 
 define(
   [
-    'backbone',
     'underscore',
-    'jquery',
     'base.view',
     'fwk/core/fxmanager'
   ],
-  function(Backbone, _, $, BaseView, FXManager) {
+  function(_, BaseView, FXManager) {
     'use strict';
 
     var ContainerView = BaseView.extend({
@@ -23,9 +21,9 @@ define(
       name: 'ContainerView',
 
       constructor: function() {
-        ContainerView.__super__.constructor.apply(this, arguments);
-        this.regions = {};
         this.data = {};
+        this.regions = {};
+        ContainerView.__super__.constructor.apply(this, arguments);
       },
 
       addView : function(region, view) {
@@ -33,6 +31,7 @@ define(
           this.regions[region].dispose();
         }
         this.regions[region] = view;
+        view.el = region;
       },
 
       showView : function(region) {

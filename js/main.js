@@ -8,10 +8,11 @@ require.config({
   paths: {
     'base.view' : 'fwk/core/base.view',
     'container.view' : 'fwk/core/container.view',
+    'stacked.view' : 'fwk/core/stacked.view',
     'base.module' : 'fwk/core/base.module',
     'backbone' : 'vendor/backbone/backbone',
     'jquery' : 'vendor/jquery/jquery-1.8.0',
-    'underscore' : 'vendor/underscore/underscore',
+    'underscore' : 'vendor/underscore/lodash',
     'handlebars' : 'vendor/handlebars/handlebars-1.0.0.beta.6',
     'statemachine' : 'vendor/statemachine/Stately',
     'modernizr' : 'vendor/modernizr/modernizr-wrapper',

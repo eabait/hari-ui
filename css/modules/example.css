@@ -1,0 +1,13 @@
+header {
+  font-family: arial, tahoma;
+}
+
+.tab-widget {
+  width: 50%;
+
+  margin-left: 5%;
+  margin-top: 5%;
+
+  font-family: arial, tahoma;
+  font-size: 0.8em;
+}

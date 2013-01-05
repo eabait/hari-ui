@@ -25,7 +25,7 @@ define([
         this.viewManager.subViewTransition({
           region: '.main-content',
           newView: exampleView,
-          transition: 'bounce'
+          transition: 'fadeIn'
         });
       },
 
