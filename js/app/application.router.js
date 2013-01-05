@@ -30,7 +30,7 @@ define([
       },
 
       defaultAction : function(path) {
-        this.navigate('/#example');
+        this.navigate('example', true);
       }
 
     });
