@@ -50,44 +50,89 @@ define(
         view.dispose();
       });
 
-      it('initial state should be <start>', function() {
-        expect(view.fsm.current).toBe('start');
+      it('initial state should be <started>', function() {
+        expect(view.fsm.getMachineState()).toBe('started');
       });
 
       it('state after -render- must be <displayed>', function() {
         view.render();
-        expect(view.fsm.current).toBe('displayed');
+        expect(view.fsm.getMachineState()).toBe('displayed');
       });
 
-      it('state after -load- must be <loading>', function() {
+      it('state after -load- must be <loaded>', function() {
         view.load();
-        expect(view.fsm.current).toBe('loading');
+        expect(view.fsm.getMachineState()).toBe('loaded');
       });
 
-      it('state after -hide- must be <invisible>', function() {
+      it('state after -hide- must be <hidden>', function() {
         view.render();
-        expect(view.fsm.current).toBe('displayed');
+        expect(view.fsm.getMachineState()).toBe('displayed');
         view.hide();
-        expect(view.fsm.current).toBe('invisible');
+        expect(view.fsm.getMachineState()).toBe('hidden');
       });
 
       it('state after -show- must be <displayed>', function() {
         view.render();
-        expect(view.fsm.current).toBe('displayed');
+        expect(view.fsm.getMachineState()).toBe('displayed');
         view.hide();
-        expect(view.fsm.current).toBe('invisible');
+        expect(view.fsm.getMachineState()).toBe('hidden');
         view.show();
-        expect(view.fsm.current).toBe('displayed');
+        expect(view.fsm.getMachineState()).toBe('displayed');
+      });
+    });
+
+    /**
+     * Test all transitions between states
+     */
+    describe('BaseView transition callbacks', function() {
+      var view = null;
+      var TestTransitions = {
+        pre : function() {},
+        post : function() {}
+      };
+
+      beforeEach(function() {
+        view = new BaseView({
+          template: testTpl,
+          el: '#test'
+        });
       });
 
-      it('state after -enable- must be <enabled>', function() {
-        // view.show();
-        // expect(view.fsm.current).toBe('displayed');
+      afterEach(function() {
+        view.dispose();
       });
 
-      it('state after -disable- must be <disabled>', function() {
-        // view.show();
-        // expect(view.fsm.current).toBe('displayed');
+      it('calls the post-render callback after render has been invoked', function() {
+        spyOn(TestTransitions, 'post');
+
+        view.addPostTransition('render', TestTransitions.post, TestTransitions);
+        view.render();
+
+        //The DOM element exists
+        expect(TestTransitions.post).toHaveBeenCalled();
+      });
+
+      it('calls the post-render callback after render has been invoked', function() {
+        spyOn(TestTransitions, 'pre');
+
+        view.addPreTransition('render', TestTransitions.pre, TestTransitions);
+        view.render();
+
+        //The DOM element exists
+        expect(TestTransitions.pre).toHaveBeenCalled();
+      });
+
+      it('calls the pre & post-render callbacks before & after render has been invoked', function() {
+        spyOn(TestTransitions, 'pre');
+        spyOn(TestTransitions, 'post');
+
+        view.addPreTransition('render', TestTransitions.pre, TestTransitions);
+        view.addPostTransition('render', TestTransitions.post, TestTransitions);
+        view.render();
+
+        //The DOM element exists
+        expect(TestTransitions.pre).toHaveBeenCalled();
+        expect(TestTransitions.post).toHaveBeenCalled();
       });
     });
 
@@ -151,11 +196,10 @@ define(
 
       it('cannot be used after disposal', function() {
         view.dispose();
+
         expect(function() {
           view.render();
-        }).toThrow(new Error('Hari UI Error: render caused an error going from disposed to disposed.' +
-          ' Message event render inappropriate in current state disposed with args ')
-        );
+        }).toThrow(new Error('Stately: invalid transition render in state disposed'));
       });
 
       it('cannot be subscribed to events after disposal', function() {

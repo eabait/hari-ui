@@ -13,7 +13,7 @@ require.config({
     'jquery' : 'vendor/jquery/jquery-1.8.0',
     'underscore' : 'vendor/underscore/underscore',
     'handlebars' : 'vendor/handlebars/handlebars-1.0.0.beta.6',
-    'statemachine' : 'vendor/statemachine/state-machine',
+    'statemachine' : 'vendor/statemachine/Stately',
     'modernizr' : 'vendor/modernizr/modernizr-wrapper',
     'text' : 'vendor/require/plugins/text',
     'pubsub' : 'vendor/pubsub/pubsub',

@@ -38,11 +38,11 @@ define(
       showView : function(region) {
         var view = this.regions[region];
 
-        if (view.fsm.can('render')) {
+        if (view.can('render')) {
           view.setElement(region);
           view.defaultAction();
         } else
-          if (view.fsm.can('show')) {
+          if (view.can('show')) {
             view.show();
           }
           else {
@@ -78,14 +78,14 @@ define(
 
         //Add after render handler with the transition animation
         if (viewPostRender && _.isFunction(viewPostRender)) {
-          newView.fsm.onafterrender = function() {
+          newView.addPostTransition('render', function() {
             viewPostRender.apply(newView);
             FXManager.animate(region, options.transition);
-          };
+          });
         } else {
-          newView.fsm.onafterrender = function() {
+          newView.addPostTransition('render', function() {
             FXManager.animate(region, options.transition);
-          };
+          });
         }
 
         this.addView(region, newView);

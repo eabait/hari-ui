@@ -147,9 +147,8 @@ define(
 
         expect(function() {
           container.render();
-        }).toThrow(new Error('Hari UI Error: render caused an error going from disposed to disposed.' +
-          ' Message event render inappropriate in current state disposed with args ')
-        );
+        }).toThrow(new Error('Stately: invalid transition render in state disposed'));
+
       });
 
       // it('cannot be subscribed to events after disposal', function() {

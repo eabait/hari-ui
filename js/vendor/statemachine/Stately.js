@@ -260,9 +260,10 @@
 
                         //try other events in chain
                         if (nextEvent) {
-
                             //let next event function handle this event
                             eventValue = nextEvent.apply(stateStore, arguments);
+                        } else {
+                            throw new Error('Stately: invalid transition ' + eventName + ' in state ' + currentState.name);
                         }
 
                         //or return value of action

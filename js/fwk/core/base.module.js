@@ -8,10 +8,12 @@ define(
     'underscore',
     'statemachine'
   ],
-  function(Backbone, ContainerView, _, StateMachine) {
+  function(Backbone, ContainerView, _, Stately) {
     'use strict';
 
     var BaseModule = function(options) {
+      var that = this;
+
       if (!options || !_.isObject(options)) {
         throw new Error('Hari UI: you need to specify module options on creation');
       }
@@ -26,17 +28,19 @@ define(
       }
       this.viewManager = options.viewManager;
 
-      this.fsm = StateMachine.create({
-        initial: 'started',
-        cid: _.uniqueId('fsm'),
-        events: [
-          {name: 'start',   from: 'none', to: 'started'},
-          {name: 'dispose', from: 'started', to: 'disposed'}
-        ],
-        callbacks : {
-          'onstart'    : _.bind(this.start, this),
-          'ondispose'  : _.bind(this.dispose, this)
-        }
+      this.fsm = Stately.machine({
+        'none': {
+          start : function() {
+            that.init();
+            return this.started;
+          }
+        },
+        'started': {
+          dispose : function() {
+            that.disposal();
+          }
+        },
+        'disposed': {}
       });
     };
 
@@ -45,12 +49,27 @@ define(
       /**
        * @Override
        */
-      start : function() {
+      init : function() {
       },
 
+      /**
+       * @Override
+       */
+      disposal : function() {
+      },
+
+      /**
+       *
+       */
+      start : function() {
+        this.fsm.start();
+      },
+
+      /**
+       *
+       */
       dispose: function() {
-        //@TODO
-        //DISPOSE MODULE
+        this.fsm.dispose();
       }
 
     });

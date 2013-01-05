@@ -14,7 +14,7 @@ define(
     'statemachine',
     'pubsub'
   ],
-  function(Backbone, _, Handlebars, $, StateMachine, PubSub) {
+  function(Backbone, _, Handlebars, $, Stately, PubSub) {
     'use strict';
 
     var BaseView = Backbone.View.extend({
@@ -38,25 +38,70 @@ define(
       name: 'BaseView',
 
       constructor: function() {
+        var that = this;
         BaseView.__super__.constructor.apply(this, arguments);
 
         //Create State Machine
-        this.fsm = StateMachine.create({
-          //initial: 'start',
-          cid: _.uniqueId('fsm'),
-          events: [
-            {name: 'init',    from: 'none',                    to: 'start'},
-            {name: 'render',  from: ['start', 'loading',
-                                     'displayed'],             to: 'displayed'},
-            {name: 'load',    from: ['start', 'displayed'],    to: 'loading'},
-            {name: 'hide',    from: ['displayed'],             to: 'invisible'},
-            {name: 'show',    from: 'invisible',               to: 'displayed'},
-            {name: 'disable', from: ['loading', 'displayed',
-                                     'invisible'],             to: 'disabled'},
-            {name: 'enable',  from: 'disabled',                to: 'enabled'},
-            {name: 'dispose', from: '*',                       to: 'disposed'}
-          ],
-          error: this.transitionErrorHandler
+        this.fsm = Stately.machine({
+          'none' : {
+            init: function() {
+              that.doInit();
+              return this.started;
+            }
+          },
+          'started' : {
+            render: function() {
+              try {
+              that.doRender();
+            } catch(e) {
+              console.log(e);
+            }
+              return this.displayed;
+            },
+            load: function() {
+              that.doLoad();
+              return this.loaded;
+            },
+            dispose: function() {
+              that.disposal();
+              return this.disposed;
+            }
+          },
+          'displayed' : {
+            render: function() {
+              that.doRender();
+              //return this.displayed;
+            },
+            hide: function() {
+              that.doHideElement();
+              return this.hidden;
+            },
+            dispose: function() {
+              that.disposal();
+              return this.disposed;
+            }
+          },
+          'loaded': {
+            render: function() {
+              that.doRender();
+              return this.displayed;
+            },
+            dispose: function() {
+              that.disposal();
+              return this.disposed;
+            }
+          },
+          'hidden': {
+            show: function() {
+              that.doShowElement();
+              return this.displayed;
+            },
+            dispose: function() {
+              that.disposal();
+              return this.disposed;
+            }
+          },
+          'disposed': {}
         });
 
         //load animation map
@@ -116,22 +161,25 @@ define(
        *                         or not
        */
       is : function(state) {
-        return this.fsm.is(state);
+        return this.fsm.getMachineState() === state;
       },
 
       /**
-       * Default Error handler function for the State Machine
-       * @param  {string} eventName    transition that caused the error
-       * @param  {string} from         from state
-       * @param  {string} to           to state
-       * @param  {string} args         arguments
-       * @param  {string} errorCode    error code
-       * @param  {string} errorMessage error message
-       * @return {Error}               returns an Error object
+       * [can description]
+       * @param  {[type]} transition [description]
+       * @return {[type]}            [description]
        */
-      transitionErrorHandler : function(eventName, from, to, args, errorCode, errorMessage) {
-        throw new Error('Hari UI Error: ' + eventName + ' caused an error going from ' +
-          from + ' to ' + to + '. Message ' + errorMessage + ' with args ' + args);
+      can : function(transition) {
+        var trans = this.fsm.getMachineEvents();
+        return _.indexOf(trans, transition) !== -1;
+      },
+
+      addPreTransition : function(transition, cb, context) {
+        this.fsm['onbefore' + transition] = _.bind(cb, context || this);
+      },
+
+      addPostTransition : function(transition, cb, context) {
+        this.fsm['onafter' + transition] = _.bind(cb, context || this);
       },
 
       /**
@@ -166,9 +214,9 @@ define(
       /**
        * @Override by Views that can be disabled
        */
-      toggle : function() {
-        //NO-OP
-      },
+      // toggle : function() {
+      //   //NO-OP
+      // },
 
       /**
        * TODO: Use FXManager
@@ -200,9 +248,11 @@ define(
        * Transition methods-----------------
        */
       init : function() {
-        if (this.fsm.can('init')) {
-          this.doInit();
-        }
+        // if (this.fsm.can('init')) {
+          //this.doInit();
+        // }
+        // this.fsm.init();
+        //
         this.fsm.init();
 
         //check template
@@ -219,57 +269,57 @@ define(
 
       render : function() {
         // console.log(this.name + ' ' + 'rendering');
-        if (this.fsm.can('render')) {
-          this.doRender();
-        }
+        // if (this.fsm.can('render')) {
         this.fsm.render();
+        // }
+        // this.fsm.render();
         //console.log(this.name + ' ' + 'end rendering');
       },
 
       load : function() {
         //console.log(this.name + ' ' + 'loading');
-        if (this.fsm.can('load')) {
-          this.doLoad();
-        }
+        // if (this.fsm.can('load')) {
         this.fsm.load();
+        // }
+        // this.fsm.load();
         //console.log(this.name + ' ' + 'end loading');
       },
 
       show : function() {
         //console.log(this.name + ' ' + 'showing');
-        if (this.fsm.can('show')) {
-          this.doShowElement();
-        }
+        // if (this.fsm.can('show')) {
         this.fsm.show();
+        // }
+        // this.fsm.show();
         //console.log(this.name + ' ' + ' end showing');
       },
 
       hide : function() {
-        if (this.fsm.can('hide')) {
-          this.doHideElement();
-        }
+        // if (this.fsm.can('hide')) {
         this.fsm.hide();
+        // }
+        // this.fsm.hide();
       },
 
-      disable : function() {
-        if (this.fsm.can('disable')) {
-          this.toggle();
-        }
-        this.fsm.disable();
-      },
+      // disable : function() {
+      //   // if (this.fsm.can('disable')) {
+      //     this.toggle();
+      //   // }
+      //   // this.fsm.disable();
+      // },
 
-      enable : function() {
-        if (this.fsm.can('enable')) {
-          this.toggle();
-        }
-        this.fsm.enable();
-      },
+      // enable : function() {
+      //   if (this.fsm.can('enable')) {
+      //     this.toggle();
+      //   }
+      //   this.fsm.enable();
+      // },
 
       dispose : function() {
-        if (this.fsm.can('dispose')) {
-          this.disposal();
-        }
+        // if (this.fsm.can('dispose')) {
         this.fsm.dispose();
+        // }
+        // this.fsm.dispose();
       },
       //End of transition methods-------------
 
