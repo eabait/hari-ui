@@ -1,13 +1,37 @@
+.main-content {
+  margin: 5% 5% 5% 5%;
+}
+
 header {
+  border-bottom: 2px solid #333;
   font-family: arial, tahoma;
 }
 
-.tab-widget {
-  width: 50%;
+.example-content {
+  width: 100%;
+}
 
-  margin-left: 5%;
-  margin-top: 5%;
+.static-view {
+  float: right;
+
+  margin-top: 2%;
+  width: 49%;
+  height: 236px;
+
+  border: 1px solid #E7E6E6;
+}
+
+.tab-widget {
+  float: left;
+
+  width: 50%;
+  margin-top: 2%;
 
   font-family: arial, tahoma;
   font-size: 0.8em;
+}
+
+footer {
+  margin-top: 20%;
+  background-color: #E7E6E6;
 }

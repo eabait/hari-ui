@@ -9,6 +9,7 @@ require.config({
     'base.view' : 'fwk/core/base.view',
     'container.view' : 'fwk/core/container.view',
     'stacked.view' : 'fwk/core/stacked.view',
+    'list.view' : 'fwk/core/list.view',
     'base.module' : 'fwk/core/base.module',
     'backbone' : 'vendor/backbone/backbone',
     'jquery' : 'vendor/jquery/jquery-1.8.0',

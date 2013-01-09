@@ -51,16 +51,15 @@ define(
           },
           'started' : {
             render: function() {
-              try {
               that.doRender();
-            } catch(e) {
-              console.log(e);
-            }
               return this.displayed;
             },
             load: function() {
-              that.doLoad();
-              return this.loaded;
+              var deferred = that.doLoad();
+              var self = this;
+              deferred.done(function() {
+                self.setMachineState(self.loaded);
+              });
             },
             dispose: function() {
               that.disposal();
@@ -72,6 +71,13 @@ define(
               that.doRender();
               //return this.displayed;
             },
+            load: function() {
+              var deferred = that.doLoad();
+              var self = this;
+              deferred.done(function() {
+                self.setMachineState(self.loaded);
+              });
+            },
             hide: function() {
               that.doHideElement();
               return this.hidden;
@@ -82,6 +88,13 @@ define(
             }
           },
           'loaded': {
+            load: function() {
+              var deferred = that.doLoad();
+              var self = this;
+              deferred.done(function() {
+                self.setMachineState(self.loaded);
+              });
+            },
             render: function() {
               that.doRender();
               return this.displayed;

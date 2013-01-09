@@ -3,9 +3,10 @@ define(
     'base.view',
     'container.view',
     'fwk/widgets/tab/tab.widget',
+    'fwk/widgets/tweetsearch/tweetsearch.widget',
     'text!./example.tpl.html'
   ],
-  function(BaseView, ContainerView, TabWidget, tpl) {
+  function(BaseView, ContainerView, TabWidget, TweetSearchWidget, tpl) {
     'use strict';
 
     var example = new ContainerView({
@@ -18,7 +19,7 @@ define(
       panels: [
         {name: 'Tab1', view: new BaseView({template: '<div>Tab widget example</div>'})},
         {name: 'Tab2', view: new BaseView({template: '<div>Table widget example</div>'})},
-        {name: 'Tab3', view: new BaseView({template: '<div>Load twitter widget example</div>'})}
+        {name: 'Twitter', view: new TweetSearchWidget()}
       ]
     });
 
