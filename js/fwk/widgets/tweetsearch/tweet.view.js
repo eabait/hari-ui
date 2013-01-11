@@ -8,6 +8,9 @@ define(
 
     var TweetView = BaseView.extend({
 
+      onshow: 'fade',
+      onhide: 'fade',
+
       doInit : function() {
         this.template = tweetTpl;
       }

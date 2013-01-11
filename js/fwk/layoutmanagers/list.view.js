@@ -2,7 +2,7 @@
  * ListView
  * @extends from BaseView
  *
- * Allows showing one view inside a region while hidding the rest
+ * Renders a list of Views iterating through a Collection.
  *
  * @author  Esteban S. Abait <esteban.abait@globant.com>
  */
@@ -32,11 +32,7 @@ define(
         this.ItemViewConstructor = this.options.itemView;
 
         this.addPreTransition('load', function() {
-          this.$el.html('<p>Loading...</p>');
-        }, this);
-
-        this.addPostTransition('load', function() {
-          this.$el.empty();
+          this.$el.html('<p>Loading...</p>'); //removed on doRender
         }, this);
       },
 
@@ -54,6 +50,8 @@ define(
         var itemView;
         var item;
         var that = this;
+
+        this.$el.empty();
 
         this.model.each(function(m) {
           itemView = new that.ItemViewConstructor({

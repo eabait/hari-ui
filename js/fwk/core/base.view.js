@@ -57,6 +57,11 @@ define(
             load: function() {
               var deferred = that.doLoad();
               var self = this;
+
+              if (!deferred) {
+                throw new Error('Hari UI: doLoad must return a deferred object');
+              }
+
               deferred.done(function() {
                 self.setMachineState(self.loaded);
               });
@@ -74,6 +79,11 @@ define(
             load: function() {
               var deferred = that.doLoad();
               var self = this;
+
+              if (!deferred) {
+                throw new Error('Hari UI: doLoad must return a deferred object');
+              }
+
               deferred.done(function() {
                 self.setMachineState(self.loaded);
               });
@@ -207,6 +217,7 @@ define(
        * @Override by Views that load data
        * Default implementation fetches data from
        * model
+       * @returns {object} Deferred object
        */
       doLoad : function() {
         //NO-OP

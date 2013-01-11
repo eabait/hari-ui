@@ -1,10 +1,11 @@
 .main-content {
   margin: 5% 5% 5% 5%;
+  font-family: arial, tahoma;
 }
 
 header {
   border-bottom: 2px solid #333;
-  font-family: arial, tahoma;
+  color: #22617A;
 }
 
 .example-content {
@@ -14,20 +15,23 @@ header {
 .static-view {
   float: right;
 
-  margin-top: 2%;
-  width: 49%;
-  height: 236px;
+  width: 47%;
+  height: 411px;
+  margin-top: 18px;
+  padding: 11px 11px 0 11px;
 
   border: 1px solid #E7E6E6;
+  font-size: 0.8em;
 }
 
 .tab-widget {
   float: left;
 
   width: 50%;
-  margin-top: 2%;
+  height: 433px;
 
-  font-family: arial, tahoma;
+  margin-top: 20px;
+
   font-size: 0.8em;
 }
 

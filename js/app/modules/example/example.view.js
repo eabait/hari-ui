@@ -17,13 +17,25 @@ define(
       onshow : 'fade',
       onhide : 'fade',
       panels: [
-        {name: 'Tab1', view: new BaseView({template: '<div>Tab widget example</div>'})},
-        {name: 'Tab2', view: new BaseView({template: '<div>Table widget example</div>'})},
-        {name: 'Twitter', view: new TweetSearchWidget()}
+        {name: 'Static text', view: new BaseView({template: '<div>First tab displays a view with static text</div>'})},
+        {name: 'Search on twitter', view: new TweetSearchWidget()}
       ]
     });
 
     example.addView('.tab-widget', tab);
+    example.addView('.static-view', new BaseView({
+      template: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sagittis ' +
+      'sodales luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ' +
+      'cursus porta cursus. Curabitur imperdiet mauris id arcu pharetra facilisis. Lorem ipsum' +
+      ' dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur ' +
+      'adipiscing elit. Pellentesque tellus justo, vulputate a laoreet nec, sodales eu turpis. ' +
+      'Pellentesque viverra consectetur luctus. Quisque mi lacus, sollicitudin non hendrerit interdum,' +
+      'fringilla in magna. Nulla accumsan iaculis rhoncus. Maecenas et sollicitudin nisi. Etiam ut' +
+      ' mauris elit. Maecenas sodales posuere nulla, lacinia lobortis nibh cursus at. Quisque dapibus,' +
+      ' arcu id tempus sodales, odio tortor sodales sapien, eget facilisis nibh ante sit amet elit.' +
+      ' Donec ut ipsum ac turpis varius vulputate. Vestibulum massa nisl, vulputate et malesuada ' +
+      'eget, luctus in est.'
+    }));
 
     return example;
   }

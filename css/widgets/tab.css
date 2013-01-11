@@ -1,13 +1,25 @@
+.tab-wrapper {
+  height: 100%;
+}
+/*
+.tab-nav {
+  height: 15%;
+}*/
+
 .tab-nav li {
   float: left;
+
   margin: 0 4px 0 0;
+
   font-size: 14px;
   list-style: none;
 }
 
 .tab-nav li a {
   float: left;
-  padding: 10px 15px;
+
+  padding: 10px 10px;
+
   text-decoration: none;
   color: #fff;
   background: #bbb;
@@ -35,7 +47,10 @@
 }
 
 .tab-panels {
-  width: 100%;
-  height: 200px;
-  background-color: #E7E6E6;
+  height: 85%;
+  border: 1px solid #E7E6E6;
+}
+
+.tab-panels > div {
+  height: 100%;
 }

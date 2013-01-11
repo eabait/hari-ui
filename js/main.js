@@ -7,10 +7,11 @@ require.config({
   //path aliases for loaded scripts
   paths: {
     'base.view' : 'fwk/core/base.view',
-    'container.view' : 'fwk/core/container.view',
-    'stacked.view' : 'fwk/core/stacked.view',
-    'list.view' : 'fwk/core/list.view',
+    'container.view' : 'fwk/layoutmanagers/container.view',
+    'stacked.view' : 'fwk/layoutmanagers/stacked.view',
+    'list.view' : 'fwk/layoutmanagers/list.view',
     'base.module' : 'fwk/core/base.module',
+    'cache' : 'fwk/services/cache',
     'backbone' : 'vendor/backbone/backbone',
     'jquery' : 'vendor/jquery/jquery-1.8.0',
     'underscore' : 'vendor/underscore/lodash',
