@@ -18,6 +18,8 @@ define(
       onhide : 'fade',
       panels: [
         {name: 'Static text', view: new BaseView({template: '<div>First tab displays a view with static text</div>'})},
+        {name: 'Static textsdsad', view: new BaseView({template: '<div>First tab displays a view with static text</div>'})},
+        {name: 'Static', view: new BaseView({template: '<div>First tab displays a view with static text</div>'})},
         {name: 'Search on twitter', view: new TweetSearchWidget()}
       ]
     });

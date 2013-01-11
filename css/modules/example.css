@@ -5,7 +5,7 @@
 
 header {
   border-bottom: 2px solid #333;
-  color: #22617A;
+  /*color: #22617A;*/
 }
 
 .example-content {
@@ -16,8 +16,8 @@ header {
   float: right;
 
   width: 47%;
-  height: 411px;
-  margin-top: 18px;
+  height: 422px;
+  margin-top: 20px;
   padding: 11px 11px 0 11px;
 
   border: 1px solid #E7E6E6;
