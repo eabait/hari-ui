@@ -18,15 +18,20 @@ define(
         throw new Error('Hari UI: you need to specify module options on creation');
       }
 
-      if (!options.router || !_.isObject(options.router)) {
-        throw new Error('Hari UI: a router must be specified when creating a module');
-      }
+      // if (!options.router || !_.isObject(options.router)) {
+      //   throw new Error('Hari UI: a router must be specified when creating a module');
+      // }
       this.router = options.router;
 
       if (!options.viewManager || !_.isObject(options.viewManager)) {
         throw new Error('Hari UI: a view manager must be specified when creating a module');
       }
       this.viewManager = options.viewManager;
+
+      //set view manager on router instance
+      if (this.router) {
+        this.router.viewManager = this.viewManager;
+      }
 
       this.fsm = Stately.machine({
         'none': {
@@ -38,6 +43,7 @@ define(
         'started': {
           dispose : function() {
             that.disposal();
+            return this.disposed;
           }
         },
         'disposed': {}
@@ -50,6 +56,10 @@ define(
        * @Override
        */
       init : function() {
+        this.viewManager.render();
+        if (!Backbone.history.started) {
+          Backbone.history.start({root: 'hari-ui'});
+        }
       },
 
       /**

@@ -46,9 +46,9 @@ define(
         }
 
         if (view.can('render')) {
-          //TODO: Change this hardcoded html to using the template----
-          this.$el.append('<div id="' + viewWrapper + '"></div>');
-          //----------------------------------------------------------
+          this.$el.append(this.cachedTemplate({
+            id: viewWrapper
+          }));
           view.setElement('#' + viewWrapper);
           view.defaultAction();
         } else {

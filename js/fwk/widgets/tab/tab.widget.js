@@ -20,7 +20,9 @@ define(
         };
 
         //Add view container for the tab-panels
-        this.panelStack = new StackedView();
+        this.panelStack = new StackedView({
+          template: '<div id="{{id}}"></div>' //wrapper template
+        });
         this.addView('.tab-panels', this.panelStack);
 
         //Add view for the tab navigation menu

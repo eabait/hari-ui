@@ -4,10 +4,10 @@
  */
 define([
     'backbone',
-    './modules/example/example.view'
+    './modules/example/example.module'
   ],
 
-  function(Backbone, exampleView) {
+  function(Backbone, ExampleModule) {
     'use strict';
 
     var AppRouter = Backbone.Router.extend({
@@ -17,14 +17,10 @@ define([
         '*path' : 'defaultAction'
       },
 
-      initialize: function(viewManager) {
-        this.viewManager = viewManager;
-      },
-
       loadExampleModule : function() {
         this.viewManager.subViewTransition({
           region: '.main-content',
-          newView: exampleView,
+          newView: ExampleModule.viewManager,
           transition: 'fadeIn'
         });
       },
