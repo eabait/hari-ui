@@ -5,11 +5,12 @@
  */
 define(
   [
+    'backbone',
     'base.view',
     'pubsub',
     'text!./testView.tpl.html'
   ],
-  function(BaseView, PubSub, testTpl) {
+  function(Backbone, BaseView, PubSub, testTpl) {
     'use strict';
 
     /**
@@ -44,6 +45,11 @@ define(
 
       beforeEach(function() {
         view = new RenderView();
+        spyOn(view, 'doLoad').andCallFake(function(params) {
+          var deferred = $.Deferred();
+          deferred.resolve();
+          return deferred;
+        });
       });
 
       afterEach(function() {
