@@ -35,6 +35,10 @@ define(
       //in the PubSub object
       subscriptions : {},
 
+      //holds UI data to be passed to the
+      //cached template
+      data : {},
+
       name: 'BaseView',
 
       constructor: function() {
@@ -228,10 +232,7 @@ define(
        * @Override by all Views
        */
       doRender : function() {
-        var data = null;
-        if (this.model) {
-          data = this.model.toJSON();
-        }
+        var data = this.model ? this.model.toJSON() : this.data;
         this.$el[0].innerHTML = this.cachedTemplate(data);
       },
 
@@ -319,7 +320,8 @@ define(
         var properties = [
           'el', '$el',
           'options', 'model', 'cachedTemplate',
-          'animations', 'name', 'subscriptions'
+          'animations', 'name', 'subscriptions',
+          'data'
         ];
         var topic;
 

@@ -21,7 +21,6 @@ define(
       name: 'ContainerView',
 
       constructor: function() {
-        this.data = {};
         this.regions = {};
         ContainerView.__super__.constructor.apply(this, arguments);
       },
