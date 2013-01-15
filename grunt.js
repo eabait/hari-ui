@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     // -----------
 
     // clean build directory
-    clean: ['dist'],
+    clean: ['app-dist'],
 
     //js linting
     lint: {
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
     requirejs: {
       std: {
         // build directory path
-        dir: '../app-dist',
+        dir: './app-dist',
         // application directory
         appDir: 'js',
 
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
 
         // define our app model
         modules: [{
-          name: 'app'
+          name: 'main'
         }]
       },
 
@@ -96,7 +96,7 @@ module.exports = function(grunt) {
   });
 
   // build task
-  grunt.registerTask('build', 'clean lint jasmine');
+  grunt.registerTask('build', 'clean lint jasmine requirejs:std');
 
   // default build task
   grunt.registerTask('default', 'build');

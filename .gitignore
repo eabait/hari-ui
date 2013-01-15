@@ -31,5 +31,5 @@ Icon
 .Trashes
 
 #-- Project ------------------------------------
-app-build
+app-dist
 node_modules
