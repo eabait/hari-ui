@@ -121,7 +121,8 @@
         "afterEach",
         "spyOn",
         "runs",
-        "waitsFor"
+        "waitsFor",
+        "module"
     ],
     "indent"        : 2         // Specify indentation spacing
 }
