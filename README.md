@@ -2,9 +2,8 @@
 
 Hari UI is an application framework for building RIA in Javascript and HTML5. Hari-UI key points are:
 * view's life-cycle management, reusability, and composition,
+* animations & view transitions,
 * model persistence & synchronization.
-
-This project is in its inception and shouldn't be used as a basis for any serious development.
 
 Documentation:
 * [Wiki] (https://github.com/eabait/hari-ui/wiki 'Hari-UI wiki')
