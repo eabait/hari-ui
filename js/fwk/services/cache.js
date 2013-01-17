@@ -153,7 +153,7 @@ define(
      */
     Cache.prototype.clear = function() {
       // loop through each item in the cache and remove it
-      this.cache.nuke('console.log("Cache cleared")');
+      this.cache.nuke();
     };
 
     /**
@@ -168,7 +168,7 @@ define(
      * @param {integer} newMaxSize the new max amount of stored entries within the Cache
      */
     Cache.prototype.resize = function(newMaxSize) {
-      console.log('Resizing Cache from ' + this.maxSize + ' to ' + newMaxSize);
+      // console.log('Resizing Cache from ' + this.maxSize + ' to ' + newMaxSize);
       // Set new size before purging so we know how many items to purge
       var oldMaxSize = this.maxSize;
       this.maxSize = newMaxSize;
