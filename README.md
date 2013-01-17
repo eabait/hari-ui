@@ -15,5 +15,5 @@ Documentation:
 * [Maxi Ferreira] (https://github.com/Charca)
 
 ##License
-Hari-UI is licensed under the [MIT] (https://github.com/eabait/hari-ui/blob/master/LICENSE)
+Hari-UI is licensed under the [MIT] (https://github.com/eabait/hari-ui/blob/master/LICENSE) license.
 
