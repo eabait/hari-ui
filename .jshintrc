@@ -122,7 +122,8 @@
         "spyOn",
         "runs",
         "waitsFor",
-        "module"
+        "module",
+        "DOMException"
     ],
     "indent"        : 2         // Specify indentation spacing
 }
