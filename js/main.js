@@ -37,6 +37,9 @@ require.config({
     },
     'handlebars': {
       exports : 'Handlebars'
+    },
+    'lawnchair' : {
+      exports: 'Lawnchair'
     }
   }
 });
