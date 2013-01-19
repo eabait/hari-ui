@@ -86,7 +86,7 @@ define(
 
         switch (method) {
           case 'read':
-            this.store.get(json.key, callback)
+            this.store.get(json.key, callback);
             break;
           case 'create':
             this.store.save(json, callback);
