@@ -5,12 +5,11 @@ define(
     'container.view',
     'fwk/widgets/tab/tab.widget',
     'fwk/widgets/tweetsearch/tweetsearch.widget',
-    'underscore',
+    'fwk/models/local.model',
     'backbone',
-    'fwk/models/local.mixin',
     'text!./example.tpl.html'
   ],
-  function(BaseModule, BaseView, ContainerView, TabWidget, TweetSearchWidget, _, Backbone, LocalMixin, tpl) {
+  function(BaseModule, BaseView, ContainerView, TabWidget, TweetSearchWidget, LocalModel, Backbone, tpl) {
     'use strict';
 
     //1) Create a container instance to act as a view manager
@@ -47,23 +46,21 @@ define(
     }));
 
     //TESTING LOCAL MIXIN---------------------------------------------------------------------------------
-    var Person = Backbone.Model.extend(LocalMixin, {localName: 'persons'});
     var Persons = Backbone.Collection.extend({
-      model: Person
+      model: LocalModel
     });
     var personList = new Persons();
-
-    _.extend(personList, LocalMixin, {localName: 'persons'});
+    personList.localName = 'persons';
+    personList.adapter = 'dom';
 
     personList.create({name: 'Esteban', age: '29'});
     personList.create({name: 'Ana', age: '25'});
     personList.create({name: 'Jane', age: '19'});
     personList.create({name: 'Ernst', age: '60'});
 
-    var Config = Backbone.Model.extend({});
-    var cfg = new Config();
-
-    _.extend(cfg, LocalMixin, {localName: 'config'});
+    var cfg = new LocalModel();
+    cfg.localName = 'config';
+    cfg.adapter = 'dom';
 
     cfg.set('auth-key', '123-345-567');
     cfg.set('locale', 'es');

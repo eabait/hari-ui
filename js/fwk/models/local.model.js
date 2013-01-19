@@ -4,15 +4,31 @@
  * Uses Lawnchair as a storage mechanism.
  *
  * Usage:
- * //Using models
- * var Config = Backbone.Model.extend(LocalMixin, {localName: 'config'});
- * var cfg = new Config();
- * cfg.set('key', '123-345-567');
- * cfg.set('locale', 'es');
- * cfg.save();
  *
- * NOTE: There are still issues. Not fully compatible with Backbone persistence
+ *  var Persons = Backbone.Collection.extend({
+ *    model: LocalModel
+ *  });
+ *  var personList = new Persons();
+ *  personList.localName = 'persons';
+ *  personList.adapter = 'dom';
+ *
+ *  personList.create({name: 'Esteban', age: '29'});
+ *  personList.create({name: 'Ana', age: '25'});
+ *  personList.create({name: 'Jane', age: '19'});
+ *  personList.create({name: 'Ernst', age: '60'});
+ *
+ *  var cfg = new LocalModel();
+ *  cfg.localName = 'config';
+ *  cfg.adapter = 'dom';
+ *
+ *  cfg.set('auth-key', '123-345-567');
+ *  cfg.set('locale', 'es');
+ *  cfg.save();
+ *
+ * NOTES:
+ * -There are still issues. Not fully compatible with Backbone persistence
  * mechanism. Backbone.Collection.sync fails.
+ * -Configuration still messy, and not intuitive
  */
 define(
   [
@@ -24,11 +40,7 @@ define(
   function(_, $, Backbone, Lawnchair) {
     'use strict';
 
-    var LocalModel = {
-
-      //Lawnchair adapter
-      //dom indicates lawnchair to use localStorage
-      adapter : 'dom',
+    var LocalModel = Backbone.Model.extend({
 
       sync : function(method, model, options) {
 
@@ -39,8 +51,8 @@ define(
         //If store haven't been mixed or created, then default to
         //this one
         this.store = this.store || new Lawnchair({
-          name: 'localmodel-' + this.localName, //uses class-attributes
-          adapter: this.adapter
+          name: 'localmodel-' + (this.localName || this.collection.localName), //uses class-attributes
+          adapter: this.adapter || this.collection.adapter
         }, function() {});
 
         var callback = function(record) {
@@ -89,7 +101,7 @@ define(
 
         return deferred.promise();
       }
-    };
+    });
 
     return LocalModel;
   }
