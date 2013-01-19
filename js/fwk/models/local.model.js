@@ -62,7 +62,7 @@ define(
             deferred.reject({
               error: 'Record not found'
             });
-            return;
+            return deferred.promise();
           }
 
           var keyToId = function(obj) {
@@ -70,11 +70,11 @@ define(
             delete obj.key;
           };
 
-          if (_.isArray(record)) {
-            _.each(record, keyToId);
-          } else {
+          // if (_.isArray(record)) {
+          //   _.each(record, keyToId);
+          // } else {
             keyToId(record);
-          }
+          // }
 
           options.success(record);
           deferred.resolve(record);
@@ -86,7 +86,7 @@ define(
 
         switch (method) {
           case 'read':
-            json.key ? this.store.get(json.key, callback) : this.store.all(callback);
+            this.store.get(json.key, callback)
             break;
           case 'create':
             this.store.save(json, callback);
