@@ -15,9 +15,10 @@
 define(
   [
     'jquery',
-    'underscore'
+    'underscore',
+    'transit'
   ],
-  function($, _) {
+  function($, _, transit) {
     'use strict';
 
     var FXManager = {
@@ -57,9 +58,6 @@ define(
        * Use to apply slide left or top animation during
        * DOM content replacement
        *
-       * There are better ways to handle browser prefixes...
-       * This must be refactored if going to production
-       *
        * A configuration object must be provided with the following
        * attributes:
        *  {object}    el       jQuery DOM element
@@ -74,31 +72,17 @@ define(
         var el = config.el;
         var duration = config.duration;
 
-        el.css({'-moz-transition': '-moz-transform ease-in-out ' + duration + 'ms'});
-        el.css({'-webkit-transition': '-webkit-transform ease-in-out ' + duration + 'ms'});
-        //el.css({'-o-transition': '-moz-transform ease-in-out ' + duration + 'ms'});
-        //el.css({'transition': '-moz-transform ease-in-out ' + duration + 'ms'});
-
-        el.css({'-moz-transform':  'translate(' + config.left + 'px, ' + config.top + 'px)'});
-        el.css({'-webkit-transform':  'translate(' + config.left + 'px, ' + config.top + 'px)'});
-        //el.css({'-o-transform':  'translate(' + config.left + 'px, ' + config.top + 'px)'});
-        //el.css({'transform':  'translate(' + config.left + 'px, ' + config.top + 'px)'});
+        el.transition({x: config.left + 'px', y: config.top + 'px' });
 
         setTimeout(function() {
           var context = config.context;
           config.cb.apply(context);
           el.css('opacity', 0);
-          el.css({'-moz-transform':  'translate(-' + config.left + 'px, -' + config.top + 'px)'});
-          el.css({'-webkit-transform':  'translate(-' + config.left + 'px, -' + config.top + 'px)'});
-          //el.css({'-o-transform':  'translate(-' + config.left + 'px, -' + config.top + 'px)'});
-          //el.css({'transform':  'translate(-' + config.left + 'px, -' + config.top + 'px)'});
+          el.transition({x: '-' + config.left + 'px', y: '-' + config.top + 'px' });
 
           setTimeout(function() {
             el.css('opacity', 1);
-            el.css({'-moz-transform': 'translate(0, 0)'});
-            el.css({'-webkit-transform': 'translate(0, 0)'});
-            //el.css({'-o-transform': 'translate(0, 0)'});
-            //el.css({'transform': 'translate(0, 0)'});
+            el.transition({x: '0px', y: '0px' });
           }, duration);
 
         }, duration);

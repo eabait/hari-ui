@@ -11,6 +11,7 @@ require.config({
     'base.module' : 'fwk/core/base.module',
     'backbone' : 'vendor/backbone/backbone',
     'jquery' : 'vendor/jquery/jquery-1.8.0',
+    'transit' : 'vendor/transit/jquery.transit.min',
     'underscore' : 'vendor/underscore/underscore',
     'handlebars' : 'vendor/handlebars/handlebars-1.0.0.beta.6',
     'statemachine' : 'vendor/statemachine/state-machine',
@@ -34,6 +35,10 @@ require.config({
     },
     'handlebars': {
       exports : 'Handlebars'
+    },
+    'transit': {
+      deps: ['jquery'],
+      exports : 'Transit'
     }
   }
 });
