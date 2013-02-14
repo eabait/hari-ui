@@ -16,9 +16,10 @@ define(
   [
     'jquery',
     'underscore',
-    'transit'
+    'transit',
+    'modernizr'
   ],
-  function($, _, transit) {
+  function($, _, transit, modernizr) {
     'use strict';
 
     var FXManager = {
@@ -43,6 +44,10 @@ define(
 
       animateEl : function(el, animation, cb, tm) {
         var anim = 'animated ' + animation;
+        if (modernizr.csstransforms3d) {
+          el.addClass('3d');
+        }
+
         el.addClass(anim);
 
         if (!_.isFunction(cb)) {
