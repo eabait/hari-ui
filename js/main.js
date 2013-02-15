@@ -18,7 +18,7 @@ require.config({
     'underscore' : 'vendor/underscore/lodash',
     'handlebars' : 'vendor/handlebars/handlebars-1.0.0.beta.6',
     'statemachine' : 'vendor/statemachine/Stately',
-    'modernizr' : 'vendor/modernizr/modernizr-wrapper',
+    'modernizr' : 'vendor/modernizr/modernizr-latest',
     'text' : 'vendor/require/plugins/text',
     'pubsub' : 'vendor/pubsub/pubsub',
     'lawnchair' : 'vendor/lawnchair/lawnchair-0.6.1'
