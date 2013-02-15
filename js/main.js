@@ -14,6 +14,7 @@ require.config({
     'cache' : 'fwk/transport/cache',
     'backbone' : 'vendor/backbone/backbone',
     'jquery' : 'vendor/jquery/jquery-1.8.0',
+    'transit' : 'vendor/transit/jquery.transit.min',
     'underscore' : 'vendor/underscore/lodash',
     'handlebars' : 'vendor/handlebars/handlebars-1.0.0.beta.6',
     'statemachine' : 'vendor/statemachine/Stately',
@@ -40,6 +41,10 @@ require.config({
     },
     'lawnchair' : {
       exports: 'Lawnchair'
+    },
+    'transit': {
+      deps: ['jquery'],
+      exports : 'Transit'
     }
   }
 });
