@@ -45,27 +45,6 @@ define(
       'eget, luctus in est.'
     }));
 
-    //TESTING LOCAL MIXIN---------------------------------------------------------------------------------
-    var Persons = Backbone.Collection.extend({
-      model: LocalModel
-    });
-    var personList = new Persons();
-    personList.localName = 'persons';
-    personList.adapter = 'dom';
-
-    personList.create({name: 'Esteban', age: '29'});
-    personList.create({name: 'Ana', age: '25'});
-    personList.create({name: 'Jane', age: '19'});
-    personList.create({name: 'Ernst', age: '60'});
-
-    var cfg = new LocalModel();
-    cfg.localName = 'config';
-    cfg.adapter = 'dom';
-
-    cfg.set('auth-key', '123-345-567');
-    cfg.set('locale', 'es');
-    cfg.save();
-
     //----------------------------------------------------------------------------------------------------
 
     //4) Return a new Module instance with the created view manager instance
