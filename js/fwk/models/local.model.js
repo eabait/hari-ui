@@ -76,7 +76,7 @@ define(
             keyToId(record);
           // }
 
-          options.success(record);
+          options.success(model, record, options);
           deferred.resolve(record);
         };
 

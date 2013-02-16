@@ -12,7 +12,7 @@ require.config({
     'list.view' : 'fwk/layoutmanagers/list.view',
     'base.module' : 'fwk/core/base.module',
     'cache' : 'fwk/transport/cache',
-    'backbone' : 'vendor/backbone/backbone-0.9.9',
+    'backbone' : 'vendor/backbone/backbone-0.9.10',
     'jquery' : 'vendor/jquery/jquery-1.8.0',
     'transit' : 'vendor/jquery/plugins/jquery.transit',
     'underscore' : 'vendor/underscore/lodash',
