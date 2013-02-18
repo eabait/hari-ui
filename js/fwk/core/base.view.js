@@ -249,7 +249,6 @@ define(
       },
 
       /**
-       * TODO: Use FXManager
        * Applies the correct animation. Animation is
        * specified when creating the widget
        */
@@ -263,7 +262,6 @@ define(
       },
 
       /**
-       * TODO: Use FXManager
        * Applies the correct animation. Animation is
        * specified when creating the widget
        */
