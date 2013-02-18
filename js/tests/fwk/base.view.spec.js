@@ -170,7 +170,7 @@ define(
         expect(view.$el.find('#testView')).toExist();
 
         view.hide();
-        expect(view.$el).toBeHidden();
+        expect(view.$el.css('opacity')).toBe('' + 0);
       });
 
       it('shows DOM elements when -show- is invoked', function() {
@@ -178,10 +178,10 @@ define(
         expect(view.$el.find('#testView')).toExist();
 
         view.hide();
-        expect(view.$el).toBeHidden();
+        expect(view.$el.css('opacity')).toBe('' + 0);
 
         view.show();
-        expect(view.$el).not.toBeHidden();
+        expect(view.$el.css('opacity')).toBe('' + 1);
       });
     });
 
