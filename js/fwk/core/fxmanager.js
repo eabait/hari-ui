@@ -24,14 +24,15 @@ define(
       animate : function(region, animation) {
         var anim = 'animated ' + animation;
         var time = 1000; //this value depends on the animation ...
+        var $el = $(region);
 
         if (modernizr.csstransforms3d) {
-          region.addClass('3d');
+          $el.addClass('3d');
         }
 
-        $(region).children().addClass(anim);
+        $el.children().addClass(anim);
         setTimeout(function() {
-          $(region).children().removeClass(anim);
+          $el.children().removeClass(anim);
         }, time);
       },
 
