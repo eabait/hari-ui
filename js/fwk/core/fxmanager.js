@@ -24,7 +24,12 @@ define(
       animate : function(region, animation) {
         var anim = 'animated ' + animation;
         var time = 1000; //this value depends on the animation ...
+
         //TODO - change this mechanism for the Enhaced Animate Plugin
+
+        if (modernizr.csstransforms3d) {
+          el.addClass('3d');
+        }
 
         $(region).children().addClass(anim);
         setTimeout(function() {
