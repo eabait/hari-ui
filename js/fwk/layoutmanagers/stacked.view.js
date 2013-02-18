@@ -41,6 +41,7 @@ define(
 
         if (!this.is('started')) {
           wrapperEl.css('display', 'none');
+          this.active.$el.css('display', 'none');
           this.active.hide();
           this.active = view;
         }

@@ -7,10 +7,13 @@ define(
     'fwk/widgets/tweetsearch/tweetsearch.widget',
     'fwk/models/local.model',
     'backbone',
+    'fwk/core/fxmanager',
     'text!./example.tpl.html'
   ],
-  function(BaseModule, BaseView, ContainerView, TabWidget, TweetSearchWidget, LocalModel, Backbone, tpl) {
+  function(BaseModule, BaseView, ContainerView, TabWidget, TweetSearchWidget, LocalModel, Backbone, FxManager, tpl) {
     'use strict';
+    var anim1;
+    var anim2;
 
     //1) Create a container instance to act as a view manager
     var exampleViewManager = new ContainerView({
@@ -19,13 +22,14 @@ define(
 
     //2) Create view or widget instances
     var tab = new TabWidget({
-      onshow : 'fade',
-      onhide : 'fade',
+      animation : 'slide',
       panels: [
-        {name: 'Static text', view: new BaseView({template: '<div>First tab displays a view with static text</div>'})},
+        {name: 'Static text', view: new BaseView({template: '<div>First tab displays a view with static text</div>', animation: 'slide'})},
         {name: 'Static view', view: new BaseView({template: '<div>First tab displays a view with static text</div>'})},
         {name: 'Static view', view: new BaseView({template: '<div>First tab displays a view with static text</div>'})},
-        {name: 'Tweet search', view: new TweetSearchWidget()}
+        {name: 'Tweet search', view: new TweetSearchWidget({
+          animation: 'slide'
+        })}
       ]
     });
 

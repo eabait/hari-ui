@@ -12,9 +12,10 @@ define(
     'handlebars',
     'jquery',
     'statemachine',
-    'pubsub'
+    'pubsub',
+    'fwk/core/fxmanager'
   ],
-  function(Backbone, _, Handlebars, $, Stately, PubSub) {
+  function(Backbone, _, Handlebars, $, Stately, PubSub, FxManager) {
     'use strict';
 
     var BaseView = Backbone.View.extend({
@@ -29,7 +30,7 @@ define(
       cachedTemplate : null,
 
       //animation hash
-      animations : {},
+      animations : null,
 
       //events to which this views has been subscribed
       //in the PubSub object
@@ -46,6 +47,9 @@ define(
         BaseView.__super__.constructor.apply(this, arguments);
 
         //Create State Machine
+        //ToDo: Refactor duplicated code. Alternatives
+        //  - create reusable functions
+        //  - roll our own state machine
         this.fsm = Stately.machine({
           'none' : {
             init: function() {
@@ -105,6 +109,11 @@ define(
             load: function() {
               var deferred = that.doLoad();
               var self = this;
+
+              if (!deferred) {
+                throw new Error('Hari UI: doLoad must return a deferred object');
+              }
+
               deferred.done(function() {
                 self.setMachineState(self.loaded);
               });
@@ -130,15 +139,6 @@ define(
           },
           'disposed': {}
         });
-
-        //load animation map
-        //TODO: Move to FXManager
-        this.animations['show'] = {};
-        this.animations['show']['fade'] = $.fn.fadeIn;
-        this.animations['show']['slide'] = $.fn.slideDown;
-        this.animations['hide'] = {};
-        this.animations['hide']['fade'] = $.fn.fadeOut;
-        this.animations['hide']['slide'] = $.fn.slideUp;
 
         this.init();
       },
@@ -236,16 +236,29 @@ define(
         this.$el[0].innerHTML = this.cachedTemplate(data);
       },
 
+      initAnimations : function() {
+        if (!this.animations) {
+          this.animations = {};
+          this.animations['fade'] = FxManager.makeToggable('fade', {
+            el: this.$el
+          });
+          this.animations['slide'] = FxManager.makeToggable('slide', {
+            el: this.$el
+          });
+        }
+      },
+
       /**
        * TODO: Use FXManager
        * Applies the correct animation. Animation is
        * specified when creating the widget
        */
       doShowElement : function() {
-        if (this.options.onshow) {
-          this.animations['show'][this.options.onshow].apply(this.$el);
+        this.initAnimations();
+        if (this.options.animation) {
+          this.animations[this.options.animation].toggle();
         } else {
-          this.$el.css('display', 'block');
+          this.$el.css('opacity', '1');
         }
       },
 
@@ -255,10 +268,11 @@ define(
        * specified when creating the widget
        */
       doHideElement : function() {
-        if (this.options.onhide) {
-          this.animations['hide'][this.options.onhide].apply(this.$el);
+        this.initAnimations();
+        if (this.options.animation) {
+          this.animations[this.options.animation].toggle();
         } else {
-          this.$el.css('display', 'none');
+          this.$el.css('opacity', '0');
         }
       },
 

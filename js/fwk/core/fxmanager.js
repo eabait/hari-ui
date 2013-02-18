@@ -1,15 +1,5 @@
 /**
  * Encapsulates all the logic necessary for DOM Animations
- *
- * TODO: not the best way to perform animations. We are assuming
- * browsers have CSS3 support here.
- *
- * In the future we need to explore alternatives such as:
- *  - https://github.com/louisremi/jquery.transition.js/
- *  - https://github.com/louisremi/jquery.transform.js
- *  - https://github.com/rstacruz/jquery.transit
- *  - https://github.com/visionmedia/move.js
- *  - https://github.com/benbarnett/jQuery-Animate-Enhanced
  */
 
 define(
@@ -22,7 +12,7 @@ define(
   function($, _, transit, modernizr) {
     'use strict';
 
-    var FXManager = {
+    var FxManager = {
 
       /**
        * Applies a CSS3 animation to a DOM element
@@ -59,42 +49,64 @@ define(
         }, tm ? tm : 300);
       },
 
-      /**
-       * Use to apply slide left or top animation during
-       * DOM content replacement
-       *
-       * A configuration object must be provided with the following
-       * attributes:
-       *  {object}    el       jQuery DOM element
-       *  {number}    duration duration of the animation
-       *  {number}    left     horizontal translation in pixels
-       *  {number}    top      vertical translation in pixels
-       *  {function}  cb       callback, usually a view render function
-       *
-       * @param  {object} config configuration object
-       */
-      slideContent : function(config) {
+      translate : function(config) {
         var el = config.el;
-        var duration = config.duration;
+        var toggle = config.toggle;
 
-        el.transition({x: config.left + 'px', y: config.top + 'px' });
+        el.transition({
+          x: toggle ? 0 : config.left + 'px',
+          y: toggle ? 0 : config.top + 'px',
+          duration: config.duration || 800,
+          easing: config.easing || 'in',
+          complete: config.complete
+        });
+      },
 
-        setTimeout(function() {
-          var context = config.context;
-          config.cb.apply(context);
-          el.css('opacity', 0);
-          el.transition({x: '-' + config.left + 'px', y: '-' + config.top + 'px' });
+      slide : function(config) {
+        var el = config.el;
+        el.transition({
+          width: config.toggle ? 0 : '100%',
+          duration: config.duration || 800,
+          easing: config.easing || 'ease',
+          complete: config.complete
+        });
+      },
 
-          setTimeout(function() {
-            el.css('opacity', 1);
-            el.transition({x: '0px', y: '0px' });
-          }, duration);
+      fade : function(config) {
+        var el = config.el;
+        el.transition({
+            opacity: +!config.toggle,
+            duration: config.duration || 800,
+            easing: config.easing || 'ease',
+            complete: config.complete
+          });
+      },
 
-        }, duration);
+      makeToggable : function(animation, config) {
+        var that = this;
+
+        return {
+
+          show: true,
+
+          toggle: function() {
+            var self = this;
+
+            config = config || {};
+
+            config.toggle = this.show;
+
+            config.complete = function() {
+              self.show = !self.show;
+            };
+
+            that[animation](config);
+          }
+        };
       }
 
     };
 
-    return FXManager;
+    return FxManager;
   }
 );

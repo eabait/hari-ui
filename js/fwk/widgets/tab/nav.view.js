@@ -30,8 +30,12 @@ define(
         var navTab = $(e.currentTarget);
         var activeView = navTab.data('tabid');
 
-        this.panelStack.showView(activeView);
-        this.updateActiveHeader(activeView);
+        if (this.panelStack.active.cid !== activeView) {
+          this.activeView = activeView;
+
+          this.panelStack.showView(activeView);
+          this.updateActiveHeader(activeView);
+        }
       },
 
       updateActiveHeader : function(activeView) {
