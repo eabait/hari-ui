@@ -1,13 +1,15 @@
 {
-  "name" : "hari-ui",
-  "version" : "0.1.0",
-  "devDependencies" : {
-    "grunt" : "~0.3.17",
-    "grunt-requirejs" : "~0.2.9",
-    "grunt-contrib" : "~0.1.7",
-    "grunt-jasmine-task" : "~0.2.3"
+  "name": "hari-ui",
+  "version": "0.1.1",
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib": "~0.4",
+    "grunt-contrib-handlebars": "~0.5.5",
+    "grunt-contrib-requirejs": "~0.4.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-jshint": "~0.2.0"
   },
-  "scripts" : {
-    "test" : "grunt build"
+  "scripts": {
+    "test": "grunt build"
   }
 }

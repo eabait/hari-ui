@@ -33,8 +33,8 @@ define(
         that.defaultSliding = options.defaultSliding || 60;
 
         that.stats = {};
-        that.stats['hits'] = 0;
-        that.stats['misses'] = 0;
+        that.stats.hits = 0;
+        that.stats.misses = 0;
       });
     }
 
@@ -55,7 +55,7 @@ define(
       this.cache.get(key, function(v) {
 
         if (!v) {
-          that.stats['misses']++;
+          that.stats.misses++;
           returnVal = null;
           return;
         }
@@ -73,10 +73,10 @@ define(
         // return the item value (if it exists), or null
         returnVal = v ? v.item.value : null;
         if (returnVal) {
-          that.stats['hits']++;
+          that.stats.hits++;
           //console.log('Cache HIT for key ' + key);
         } else {
-          that.stats['misses']++;
+          that.stats.misses++;
           //console.log('Cache MISS for key ' + key);
         }
       });

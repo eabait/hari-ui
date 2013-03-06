@@ -33,3 +33,6 @@ Icon
 #-- Project ------------------------------------
 app-dist
 node_modules
+
+#Generated files-------------------------------
+js/app/templates.js

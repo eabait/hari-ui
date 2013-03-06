@@ -239,10 +239,10 @@ define(
       initAnimations : function() {
         if (!this.animations) {
           this.animations = {};
-          this.animations['fade'] = FxManager.makeToggable('fade', {
+          this.animations.fade = FxManager.makeToggable('fade', {
             el: this.$el
           });
-          this.animations['slide'] = FxManager.makeToggable('slide', {
+          this.animations.slide = FxManager.makeToggable('slide', {
             el: this.$el
           });
         }

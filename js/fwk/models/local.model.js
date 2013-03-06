@@ -57,6 +57,7 @@ define(
 
         var callback = function(record) {
 
+          /*jshint unused:true, eqnull:true */
           if (record == null) {
             options.error('Record not found');
             deferred.reject({
