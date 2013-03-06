@@ -54,7 +54,7 @@ module.exports = function(grunt) {
           amd: true
         },
         files: {
-          'js/app/templates/templates.js': 'js/**/*.tpl.html'
+          'js/app/templates.js': 'js/**/*.tpl.html'
         }
       }
     },
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', 'build');
 
   // build task
-  grunt.registerTask('build', ['clean', 'jshint:all', 'jasmine', 'requirejs']);
+  grunt.registerTask('build', ['clean', 'jshint:all', 'handlebars', 'jasmine', 'requirejs']);
 
   // launch node server to view the projct
   grunt.registerTask('launch', 'server watch');
