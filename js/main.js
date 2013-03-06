@@ -21,7 +21,8 @@ require.config({
     'modernizr' : 'vendor/modernizr/modernizr-latest',
     'text' : 'vendor/require/plugins/text',
     'pubsub' : 'vendor/pubsub/pubsub',
-    'lawnchair' : 'vendor/lawnchair/lawnchair-0.6.1'
+    'lawnchair' : 'vendor/lawnchair/lawnchair-0.6.1',
+    'jst' : 'app/templates'
   },
   //load script's dependencies in correct order &
   //wraps non-AMD scripts into AMD-modules

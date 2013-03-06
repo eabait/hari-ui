@@ -9,16 +9,16 @@ define(
     'base.module',
     'container.view',
     './application.router',
-    'text!./application.tpl.html'
+    'jst'
   ],
-  function(Backbone, BaseModule, ContainerView, AppRouter, AppTpl) {
+  function(Backbone, BaseModule, ContainerView, AppRouter, JST) {
     'use strict';
 
     return new BaseModule({
       router : new AppRouter(),
       viewManager : new ContainerView({
         el: 'body',
-        template: AppTpl
+        cachedTemplate: JST['js/app/application.tpl.html']
       })
     });
 

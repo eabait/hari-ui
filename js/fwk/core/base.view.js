@@ -23,7 +23,7 @@ define(
       //finite-state-machine
       fsm : null,
 
-      //reference to the view's template
+      //template strings, if specified
       template: null,
 
       //reference to the compiled template
@@ -278,10 +278,17 @@ define(
        * Transition methods-----------------
        */
       init : function() {
+        var hasCachedTemplate;
+
         this.fsm.init();
 
+        this.template = this.template || this.options.template;
+        this.cachedTemplate = this.cachedTemplate || this.options.cachedTemplate;
+
+        hasCachedTemplate = _.isFunction(this.cachedTemplate);
+
         //check template
-        if (!this.template && !this.options.template) {
+        if (!hasCachedTemplate && !this.template) {
           throw new Error('Hari UI: a template must be specified');
         } else
           if (this.options.template) {
@@ -289,7 +296,9 @@ define(
           }
 
         //compile template and save compiled function
-        this.cachedTemplate = Handlebars.compile(this.template);
+        if (!hasCachedTemplate) {
+          this.cachedTemplate = Handlebars.compile(this.template);
+        }
       },
 
       render : function() {

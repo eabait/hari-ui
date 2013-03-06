@@ -8,16 +8,14 @@ define(
     'fwk/models/local.model',
     'backbone',
     'fwk/core/fxmanager',
-    'text!./example.tpl.html'
+    'jst'
   ],
-  function(BaseModule, BaseView, ContainerView, TabWidget, TweetSearchWidget, LocalModel, Backbone, FxManager, tpl) {
+  function(BaseModule, BaseView, ContainerView, TabWidget, TweetSearchWidget, LocalModel, Backbone, FxManager, JST) {
     'use strict';
-    var anim1;
-    var anim2;
 
     //1) Create a container instance to act as a view manager
     var exampleViewManager = new ContainerView({
-      template: tpl
+      cachedTemplate: JST['js/app/modules/example/example.tpl.html']
     });
 
     //2) Create view or widget instances
@@ -25,8 +23,8 @@ define(
       animation : 'slide',
       panels: [
         {name: 'Static text', view: new BaseView({template: '<div>First tab displays a view with static text</div>', animation: 'slide'})},
-        {name: 'Static view', view: new BaseView({template: '<div>First tab displays a view with static text</div>'})},
-        {name: 'Static view', view: new BaseView({template: '<div>First tab displays a view with static text</div>'})},
+        {name: 'Static view', view: new BaseView({template: '<div>Second tab displays a view with static text</div>'})},
+        {name: 'Static view', view: new BaseView({template: '<div>Third tab displays a view with static text</div>'})},
         {name: 'Tweet search', view: new TweetSearchWidget({
           animation: 'slide'
         })}
@@ -50,17 +48,17 @@ define(
     }));
 
     //----------------------------------------------------------------------------------------------------
-    var Persons = Backbone.Collection.extend({
-      model: LocalModel
-    });
-    var personList = new Persons();
-    personList.localName = 'persons';
-    personList.adapter = 'dom';
+    // var Persons = Backbone.Collection.extend({
+    //   model: LocalModel
+    // });
+    // var personList = new Persons();
+    // personList.localName = 'persons';
+    // personList.adapter = 'dom';
 
-    personList.create({name: 'Esteban', age: '29'});
-    personList.create({name: 'Ana', age: '25'});
-    personList.create({name: 'Jane', age: '19'});
-    personList.create({name: 'Ernst', age: '60'});
+    // personList.create({name: 'Esteban', age: '29'});
+    // personList.create({name: 'Ana', age: '25'});
+    // personList.create({name: 'Jane', age: '19'});
+    // personList.create({name: 'Ernst', age: '60'});
 
     //----------------------------------------------------------------------------------------------------
 
