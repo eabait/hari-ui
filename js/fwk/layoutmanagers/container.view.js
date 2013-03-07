@@ -76,12 +76,12 @@ define(
 
         //Add after render handler with the transition animation
         if (viewPostRender && _.isFunction(viewPostRender)) {
-          newView.addPostTransition('render', function() {
+          newView.after('render', function() {
             viewPostRender.apply(newView);
             FXManager.animate(region, options.transition);
           });
         } else {
-          newView.addPostTransition('render', function() {
+          newView.after('render', function() {
             FXManager.animate(region, options.transition);
           });
         }

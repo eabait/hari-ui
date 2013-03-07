@@ -111,7 +111,7 @@ define(
       it('calls the post-render callback after render has been invoked', function() {
         spyOn(TestTransitions, 'post');
 
-        view.addPostTransition('render', TestTransitions.post, TestTransitions);
+        view.after('render', TestTransitions.post, TestTransitions);
         view.render();
 
         //The DOM element exists
@@ -121,7 +121,7 @@ define(
       it('calls the post-render callback after render has been invoked', function() {
         spyOn(TestTransitions, 'pre');
 
-        view.addPreTransition('render', TestTransitions.pre, TestTransitions);
+        view.before('render', TestTransitions.pre, TestTransitions);
         view.render();
 
         //The DOM element exists
@@ -132,8 +132,8 @@ define(
         spyOn(TestTransitions, 'pre');
         spyOn(TestTransitions, 'post');
 
-        view.addPreTransition('render', TestTransitions.pre, TestTransitions);
-        view.addPostTransition('render', TestTransitions.post, TestTransitions);
+        view.before('render', TestTransitions.pre, TestTransitions);
+        view.after('render', TestTransitions.post, TestTransitions);
         view.render();
 
         //The DOM element exists

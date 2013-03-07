@@ -201,11 +201,11 @@ define(
         return _.indexOf(trans, transition) !== -1;
       },
 
-      addPreTransition : function(transition, cb, context) {
+      before : function(transition, cb, context) {
         this.fsm['onbefore' + transition] = _.bind(cb, context || this);
       },
 
-      addPostTransition : function(transition, cb, context) {
+      after : function(transition, cb, context) {
         this.fsm['onafter' + transition] = _.bind(cb, context || this);
       },
 

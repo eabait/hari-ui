@@ -31,7 +31,7 @@ define(
 
         this.ItemViewConstructor = this.options.itemView;
 
-        this.addPreTransition('load', function() {
+        this.before('load', function() {
           this.$el.html('<p>Loading...</p>'); //removed on doRender
         }, this);
       },

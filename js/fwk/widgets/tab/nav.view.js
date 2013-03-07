@@ -22,7 +22,7 @@ define(
         };
         this.panelStack = this.options.panelStack;
 
-        this.addPostTransition('render', this.onAfterRender, this);
+        this.after('render', this.onAfterRender, this);
       },
 
       onNavClick : function(e) {
