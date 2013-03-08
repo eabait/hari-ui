@@ -13,9 +13,10 @@ define(
     'jquery',
     'statemachine',
     'pubsub',
-    'fwk/core/fxmanager'
+    'fwk/core/fxmanager',
+    'jst'
   ],
-  function(Backbone, _, Handlebars, $, Stately, PubSub, FxManager) {
+  function(Backbone, _, Handlebars, $, Stately, PubSub, FxManager, JST) {
     'use strict';
 
     var BaseView = Backbone.View.extend({
@@ -279,25 +280,33 @@ define(
        */
       init : function() {
         var hasCachedTemplate;
+        var tplFunc;
 
         this.fsm.init();
 
-        this.template = this.template || this.options.template;
+        this.template = this.options.template || this.template; //configuration over default value
         this.cachedTemplate = this.cachedTemplate || this.options.cachedTemplate;
 
         hasCachedTemplate = _.isFunction(this.cachedTemplate);
 
-        //check template
-        if (!hasCachedTemplate && !this.template) {
-          throw new Error('Hari UI: a template must be specified');
-        } else
-          if (this.options.template) {
-            this.template = this.options.template;
-          }
-
-        //compile template and save compiled function
+        //If the view doesnt have a template function
+        //look into the templates registry
         if (!hasCachedTemplate) {
-          this.cachedTemplate = Handlebars.compile(this.template);
+          tplFunc = JST[this.template];
+          if (_.isFunction(tplFunc)) {
+            this.cachedTemplate = tplFunc;
+          } else {
+            //check template property, and try to compile it
+            try {
+              if (this.template) {
+                this.cachedTemplate = Handlebars.compile(this.template);
+              } else {
+                throw new Error('Hari UI: a template must be provided');
+              }
+            } catch(e) {
+              throw new Error('Hari UI: the provided template cannot be compiled');
+            }
+          }
         }
       },
 

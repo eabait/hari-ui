@@ -7,10 +7,9 @@ define(
   [
     'backbone',
     'base.view',
-    'pubsub',
-    'text!./testView.tpl.html'
+    'pubsub'
   ],
-  function(Backbone, BaseView, PubSub, testTpl) {
+  function(Backbone, BaseView, PubSub) {
     'use strict';
 
     /**
@@ -29,7 +28,7 @@ define(
 
         //Test view throwing an exception
         expect(createNewView).toThrow(
-          new Error('Hari UI: a template must be specified')
+          new Error('Hari UI: the provided template cannot be compiled')
         );
       });
     });
@@ -39,7 +38,7 @@ define(
      */
     describe('BaseView states and transitions', function() {
       var RenderView = BaseView.extend({
-        template: testTpl
+        template: 'testView.tpl.html'
       });
       var view;
 
@@ -99,7 +98,7 @@ define(
 
       beforeEach(function() {
         view = new BaseView({
-          template: testTpl,
+          template: 'testView.tpl.html',
           el: '#test'
         });
       });
@@ -147,7 +146,7 @@ define(
 
       beforeEach(function() {
         view = new BaseView({
-          template: testTpl,
+          template: 'testView.tpl.html',
           el: '#test'
         });
       });
@@ -190,7 +189,7 @@ define(
      */
     describe('BaseView disposal', function() {
       var RenderView = BaseView.extend({
-        template: testTpl,
+        template: 'testView.tpl.html',
         listenEvent : function() {
         }
       });

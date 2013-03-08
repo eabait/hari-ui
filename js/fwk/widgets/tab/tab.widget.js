@@ -2,10 +2,9 @@ define(
   [
     'container.view',
     './nav.view',
-    'stacked.view',
-    'text!./tab.tpl.html'
+    'stacked.view'
   ],
-  function(ContainerView, NavView, StackedView, TabTpl) {
+  function(ContainerView, NavView, StackedView) {
     'use strict';
 
     var TabView = ContainerView.extend({
@@ -14,7 +13,7 @@ define(
       navView : null,
 
       doInit : function() {
-        this.template = TabTpl;
+        this.template = 'tab.tpl.html';
         this.data = {
           id: this.cid
         };

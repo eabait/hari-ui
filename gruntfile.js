@@ -51,7 +51,11 @@ module.exports = function(grunt) {
       compile: {
         options: {
           namespace: 'JST',
-          amd: true
+          amd: true,
+          processName: function(filename) {
+            var pieces = filename.split('/');
+            return pieces[pieces.length - 1];
+          }
         },
         files: {
           'js/app/templates.js': 'js/**/*.tpl.html'

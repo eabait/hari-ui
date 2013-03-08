@@ -5,10 +5,9 @@ define(
     'list.view',
     './search.view',
     './tweet.view',
-    './tweet.collection',
-    'text!./tweetsearch.tpl.html'
+    './tweet.collection'
   ],
-  function(_, ContainerView, ListView, SearchView, TweetView, TweetCollection, tweetSearchTpl) {
+  function(_, ContainerView, ListView, SearchView, TweetView, TweetCollection) {
     'use strict';
 
     var TweetSearchWidget = ContainerView.extend({
@@ -17,7 +16,7 @@ define(
         var searchView;
         var listView;
 
-        this.template = tweetSearchTpl;
+        this.template = 'tweetsearch.tpl.html';
         this.data = {
           id : this.cid
         };

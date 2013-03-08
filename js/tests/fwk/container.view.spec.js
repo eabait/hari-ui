@@ -7,10 +7,9 @@ define(
   [
     'container.view',
     'base.view',
-    'pubsub',
-    'text!./containerview.tpl.html'
+    'pubsub'
   ],
-  function(ContainerView, BaseView, PubSub, containerTpl) {
+  function(ContainerView, BaseView, PubSub) {
     'use strict';
 
     describe('ContainerView add sub views', function() {
@@ -22,7 +21,7 @@ define(
       beforeEach(function() {
         container = new ContainerView({
           el: '#test',
-          template: containerTpl
+          template: 'containerview.tpl.html'
         });
         header = new BaseView({
           template: '<div id="subview1"></div>'
@@ -124,7 +123,7 @@ define(
       beforeEach(function() {
         container = new ContainerView({
           el: '#test',
-          template: containerTpl
+          template: 'containerview.tpl.html'
         });
         header = new BaseView({
           template: '<div id="subview1"></div>'

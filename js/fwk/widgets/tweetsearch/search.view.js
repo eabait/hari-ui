@@ -1,10 +1,9 @@
 define(
   [
     'base.view',
-    'pubsub',
-    'text!./search.tpl.html'
+    'pubsub'
   ],
-  function(BaseView, PubSub, searchTpl) {
+  function(BaseView, PubSub) {
     'use strict';
 
     var SearchView = BaseView.extend({
@@ -14,7 +13,7 @@ define(
       },
 
       doInit : function() {
-        this.template = searchTpl;
+        this.template = 'search.tpl.html';
       },
 
       onKeyPress : function(e) {

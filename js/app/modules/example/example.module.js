@@ -7,15 +7,14 @@ define(
     'fwk/widgets/tweetsearch/tweetsearch.widget',
     'fwk/models/local.model',
     'backbone',
-    'fwk/core/fxmanager',
-    'jst'
+    'fwk/core/fxmanager'
   ],
-  function(BaseModule, BaseView, ContainerView, TabWidget, TweetSearchWidget, LocalModel, Backbone, FxManager, JST) {
+  function(BaseModule, BaseView, ContainerView, TabWidget, TweetSearchWidget, LocalModel, Backbone, FxManager) {
     'use strict';
 
     //1) Create a container instance to act as a view manager
     var exampleViewManager = new ContainerView({
-      cachedTemplate: JST['js/app/modules/example/example.tpl.html']
+      template: 'example.tpl.html'
     });
 
     //2) Create view or widget instances

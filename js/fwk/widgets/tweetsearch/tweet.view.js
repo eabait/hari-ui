@@ -1,18 +1,16 @@
 define(
   [
-    'base.view',
-    'text!./tweet.tpl.html'
+    'base.view'
   ],
-  function(BaseView, tweetTpl) {
+  function(BaseView) {
     'use strict';
 
     var TweetView = BaseView.extend({
 
-      onshow: 'fade',
-      onhide: 'fade',
+      animation: 'fade',
 
       doInit : function() {
-        this.template = tweetTpl;
+        this.template = 'tweet.tpl.html';
       }
 
     });

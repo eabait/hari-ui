@@ -1,7 +1,6 @@
 define(
   [
-    'base.view',
-    'text!./nav.tpl.html'
+    'base.view'
   ],
   function(BaseView, NavTpl) {
     'use strict';
@@ -15,7 +14,7 @@ define(
       },
 
       doInit : function() {
-        this.template = NavTpl;
+        this.template = 'nav.tpl.html';
         this.data = {
           id: this.cid,
           panels: this.options.panels

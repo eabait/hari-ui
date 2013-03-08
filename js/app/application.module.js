@@ -8,8 +8,7 @@ define(
     'backbone',
     'base.module',
     'container.view',
-    './application.router',
-    'jst'
+    './application.router'
   ],
   function(Backbone, BaseModule, ContainerView, AppRouter, JST) {
     'use strict';
@@ -18,7 +17,7 @@ define(
       router : new AppRouter(),
       viewManager : new ContainerView({
         el: 'body',
-        cachedTemplate: JST['js/app/application.tpl.html']
+        template: 'application.tpl.html'
       })
     });
 
