@@ -11,8 +11,6 @@ Documentation:
 ##Team
 * [Esteban S. Abait] (https://github.com/eabait/)
 * [Franco Monsalvo] (https://github.com/fmonsalvo)
-* [Ezequiel Calvo] (https://github.com/ezecafre89)
-* [Maxi Ferreira] (https://github.com/Charca)
 
 ##License
 Hari-UI is licensed under the [MIT] (https://github.com/eabait/hari-ui/blob/master/LICENSE) license.
