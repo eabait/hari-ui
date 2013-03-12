@@ -1,0 +1,61 @@
+.tab-wrapper {
+  height: 100%;
+}
+
+.tab-nav {
+  height: 7%;
+}
+
+.tab-nav > ul {
+  height: 100%;
+}
+
+.tab-nav > ul > li {
+  float: left;
+
+  height: 100%;
+  margin: 0 5px 0 0;
+
+  list-style: none;
+}
+
+.tab-nav > ul > li > a {
+  float: left;
+
+  height: 100%;
+  /*width: 90%;*/
+
+  padding: 0 5% 0 5%;
+
+  line-height: 250%;
+  text-align: center;
+  text-decoration: none;
+
+  overflow: hidden;
+
+  color: #fff;
+  background: #bbb;
+}
+
+.tab-nav li a:hover,
+.tab-nav li a:focus {
+  background: #999;
+}
+
+.tab-nav li a:active {
+  background: #888;
+}
+
+.tab-nav li.active a {
+  color: #fff;
+  background: #666;
+}
+
+.tab-panels {
+  height: 93%;
+  border: 1px solid #E7E6E6;
+}
+
+.tab-panels > div {
+  height: 100%;
+}

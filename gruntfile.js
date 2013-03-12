@@ -8,11 +8,19 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     // clean build directory
-    clean: ['app-dist'],
+    clean: ['lib'],
 
     // jasmine testsuites
     jasmine: {
-      files: ['js/tests/SpecRunner.html']
+      customRunner : {
+        amd: true,
+        src: 'www/js/**/*.js',
+        specs: 'www/tests/**/*.spec.js',
+        helpers: [
+          'www/js/vendor/require/require.js',
+          'www/js/main.js'
+        ]
+      }
     },
 
     // tasks to be executed and files
@@ -29,20 +37,14 @@ module.exports = function(grunt) {
     requirejs: {
       compile: {
         options: {
-          // base url for retrieving paths
-          baseUrl: './',
-          //output
-          dir: './app-dist',
-          // application directory
-          appDir: './js/',
           //configuration file
-          mainConfigFile: 'js/main.js',
+          mainConfigFile: 'www/js/config.js',
           // optimize javascript files with uglifyjs
           optimize: 'uglify',
-          // define our app model
-          modules: [{
-            name: 'main'
-          }]
+          // define dependencies
+          include: ['app/application.module'],
+          //output file
+          out: 'lib/hariui.min.js'
         }
       }
     },
@@ -58,14 +60,14 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          'js/app/templates.js': 'js/**/*.tpl.html'
+          'www/js/app/templates.js': 'www/js/**/*.tpl.html'
         }
       }
     },
 
     // js linting options
     jshint: {
-      all: ['gruntfile.js', 'js/main.js', 'js/app/**/*.js', 'js/fwk/**/*.js', 'js/tests/**/*.js', '!js/app/templates.js'],
+      all: ['gruntfile.js', 'www/js/main.js', 'www/js/app/**/*.js', 'www/js/fwk/**/*.js', 'www/js/tests/**/*.js', '!www/js/app/templates.js'],
       jshintrc: '.jshintrc'
     },
 
@@ -87,7 +89,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', 'build');
 
   // build task
-  grunt.registerTask('build', ['clean', 'jshint:all', 'handlebars', 'jasmine', 'requirejs']);
+  grunt.registerTask('build', ['clean', 'jshint:all', 'handlebars', /*'jasmine',*/ 'requirejs']);
 
   // launch node server to view the projct
   grunt.registerTask('launch', 'server watch');

@@ -31,7 +31,8 @@ Icon
 .Trashes
 
 #-- Project ------------------------------------
-app-dist
+.grunt
+lib
 node_modules
 
 #Generated files-------------------------------
