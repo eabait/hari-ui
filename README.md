@@ -1,3 +1,6 @@
+23-12-2013. This repo is no longer maintained.
+Thanks
+
 ##Hari UI [![Build Status](https://api.travis-ci.org/eabait/hari-ui.png?branch=master)](http://travis-ci.org/eabait/hari-ui)
 
 Hari UI is an application framework for building RIA in Javascript and HTML5. Hari-UI key points are:
